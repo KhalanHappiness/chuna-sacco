@@ -1,6 +1,16 @@
-import { Users, TrendingUp, Shield, BookOpen, Building2, CreditCard, Phone, Mail, MapPin, CheckCircle } from 'lucide-react';
+import { Users, TrendingUp, Shield, BookOpen, Building2, CreditCard, Phone, Mail, MapPin, CheckCircle, ArrowRight } from 'lucide-react';
 
 const Footer = () => {
+
+    const quickLinks = [
+    { name: "Mchuna Application", href: "/mchuna" },
+    { name: "Help Desk", href: "/help" },
+    { name: "Online Loan Application", href: "/loan-application" },
+    { name: "Asset Financing", href: "/asset-financing" },
+    { name: "Group Loan", href: "/group-loan" },
+    { name: "New Membership Application", href: "/membership" }
+  ]
+  
   return (
     <footer className="bg-white text-gray py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -22,13 +32,24 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-emerald-600">Mchuna Application</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-emerald-600">Help Desk</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-emerald-600">Online Loan Application</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-emerald-600">Asset Financing</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-emerald-600">Group Loan</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-emerald-600">New Membership Application</a></li>
-
+              {[
+                "Mchuna Application",
+                "Help Desk",
+                "Online Loan Application",
+                "Asset Financing",
+                "Group Loan",
+                "New Membership Application"
+              ].map((link, idx) => (
+                <li key={idx}>
+                  <a 
+                    href="#" 
+                    className="flex items-center text-gray-400 hover:text-emerald-600 transition-colors"
+                  >
+                    <ArrowRight className="h-4 w-4 mr-2" />
+                    {link}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
           
