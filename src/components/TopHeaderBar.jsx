@@ -41,7 +41,7 @@ const TopHeaderBar = () => {
   };
 
   return (
-    <div className="bg-emerald-600 text-white py-1 px-4 text-xs font-medium">
+    <div className="fixed top-0 left-0 w-full bg-emerald-600 text-white py-1 px-4 text-xs font-medium z-50">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Left side - Flowing Text with Navigation Arrows */}
         <div 

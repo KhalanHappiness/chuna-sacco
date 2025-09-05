@@ -143,7 +143,7 @@ const LatestUpdates = () => {
             ))}
             
             {/* Quick Stats */}
-            <div className="bg-emerald-500 rounded-xl p-6 text-white">
+            <div className="bg-emerald-600 rounded-xl p-6 text-white">
               <h3 className="font-bold text-lg mb-4">Chuna Sacco at a Glance</h3>
               <div className="grid grid-cols-2 gap-4">
                 {quickStats.map((stat, index) => (

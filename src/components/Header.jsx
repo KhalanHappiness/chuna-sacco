@@ -12,7 +12,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white shadow-sm relative">
+    <header className="fixed top-8 left-0 w-full bg-white shadow-sm z-40">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center">

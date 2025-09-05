@@ -49,7 +49,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="bg-white  overflow-hidden">
+    <section className="bg-white  overflow-hidden mt-28">
       <div className="w-full">
         <div className="grid grid-cols-1 lg:grid-cols-1 gap-12 items-center">
           
