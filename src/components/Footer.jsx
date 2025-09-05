@@ -56,11 +56,16 @@ const Footer = () => {
               </li>
               <li className="flex items-center text-gray-400">
                 <Phone className="h-4 w-4 mr-2" />
-                +254 (0) 123 4567
+                +254 758 111 222
               </li>
               <li className="flex items-center text-gray-400">
                 <Mail className="h-4 w-4 mr-2" />
-                info@chunadtsacco.co.ke
+                <a 
+                    href="mailto:chunasacco@uonbi.ac.ke" 
+                    className="hover:text-emerald-600 transition-colors"
+                >
+                    Mail us
+                </a>
               </li>
               <li className="text-gray-400">
                 Mon-Fri: 8AM-5PM
