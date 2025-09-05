@@ -245,16 +245,14 @@ const FinancialProductsSection = () => {
     <section className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Financial Products</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Range of Services</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Tailored financial solutions designed specifically for the University community. From 
-            students to staff, we have products that meet your unique needs.
+          We provide flexible savings and loan products tailored to support the financial goals of individuals, families, and businesses across Kenya.
           </p>
         </div>
         
         {/* Image-based Product Cards Section */}
         <div className="mb-16">
-          <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Featured Services</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {imageProducts.map((product, index) => (
               <ImageProductCard key={index} {...product} />

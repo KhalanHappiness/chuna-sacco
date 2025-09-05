@@ -25,7 +25,7 @@ const testimonials = [
     role: "Logistics Manager",
     business: "TransCorp Ltd",
     content: "Professional service and transparent processes. The SACCO helped me secure a mortgage for my family home. Their financial advisory services are top-notch and have helped me plan for my retirement.",
-    rating: 5,
+    rating: 4,
     photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&w=400&h=400&fit=crop&crop=face"
   },
   {
@@ -34,7 +34,7 @@ const testimonials = [
     role: "Entrepreneur",
     business: "Fresh Produce Supplier",
     content: "The emergency loan facility saved my business during tough times. The quick approval process and reasonable terms meant I could restock my inventory without delay. Highly recommend this SACCO.",
-    rating: 5,
+    rating: 3,
     photo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&w=400&h=400&fit=crop&crop=face"
   }
 ];
@@ -77,7 +77,7 @@ const MemberTestimonials = () => {
   };
 
   return (
-    <section className="py-20 px-6 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section className="bg - gray py-20 px-6 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -85,14 +85,14 @@ const MemberTestimonials = () => {
             What Our Members Say
           </h2>
 
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Discover how our SACCO has transformed the financial lives of thousands of members across our community.
+          <p className="text-gray-600 max-w-3xl mx-auto">
+            Discover how Chuna Sacco has transformed the financial lives of thousands of members across our community.
           </p>
         </div>
       
         {/* Split-Screen Testimonial */}
         <div className="overflow-hidden shadow-2xl bg-white border-0 rounded-2xl">
-          <div className="grid lg:grid-cols-2 min-h-[600px]">
+          <div className="grid lg:grid-cols-2 min-h-[400px]">
             {/* Left Side - Testimonial Content */}
             <div className="flex flex-col justify-center p-8 lg:p-12 xl:p-16 bg-gradient-to-br from-emerald-600 to-emerald-800 text-white relative">
               <div className="absolute top-8 left-8 text-white/20">
