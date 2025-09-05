@@ -3,12 +3,12 @@ import { Users, TrendingUp, Shield, BookOpen, Building2, CreditCard, Phone, Mail
 const Footer = () => {
 
     const quickLinks = [
-    { name: "Mchuna Application", href: "/mchuna" },
-    { name: "Help Desk", href: "/help" },
-    { name: "Online Loan Application", href: "/loan-application" },
+    { name: "Mchuna Application", href: "https://cloudpesa.chunasacco.co.ke/" },
+    { name: "Help Desk", href: "http://www.helpdesk.chunasacco.co.ke:8089/" },
+    { name: "Online Loan Application", href: "https://www.internetbanking.chunasacco.co.ke/" },
     { name: "Asset Financing", href: "/asset-financing" },
     { name: "Group Loan", href: "/group-loan" },
-    { name: "New Membership Application", href: "/membership" }
+    { name: "New Membership Application", href: "https://applications.chunasacco.co.ke/index.php?r=new-membership" }
   ]
   
   return (
@@ -32,21 +32,14 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              {[
-                "Mchuna Application",
-                "Help Desk",
-                "Online Loan Application",
-                "Asset Financing",
-                "Group Loan",
-                "New Membership Application"
-              ].map((link, idx) => (
+              {quickLinks.map((link, idx) => (
                 <li key={idx}>
                   <a 
-                    href="#" 
+                    href={link.href}
                     className="flex items-center text-gray-400 hover:text-emerald-600 transition-colors"
                   >
                     <ArrowRight className="h-4 w-4 mr-2" />
-                    {link}
+                    {link.name}
                   </a>
                 </li>
               ))}
@@ -94,11 +87,11 @@ const Footer = () => {
         
         <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">
-            © 2024 Chuna DT Sacco Limited. All rights reserved.
+            © Copyright Chuna Co-operative Savings & Credit Society Ltd 2025. All Rights Reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
-            <a href="#" className="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+            <a href="https://www.chunasacco.co.ke/sites/default/files/2025-02/Privacy%20Policy%20for%20Chuna%20SACCO%20Mobile%20Banking%20App.pdf" className="text-gray-400 hover:text-emerald-600 text-sm">Privacy Policy</a>
+            <a href="#" className="text-gray-400 hover:text-emerald-600 text-sm">Terms of Service</a>
           </div>
         </div>
       </div>
