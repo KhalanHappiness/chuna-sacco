@@ -36,10 +36,13 @@ const Header = () => {
           {/* Desktop Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
             <button className="text-gray-700 hover:text-emerald-600 transition-colors">Login</button>
-            <button className="bg-emerald-500 text-white px-4 py-2 rounded-lg hover:bg-emerald-600 transition-colors">
+            <a 
+              href="https://applications.chunasacco.co.ke/index.php?r=new-membership" 
+              className="bg-emerald-500 text-white px-4 py-2 rounded-lg hover:bg-emerald-600 transition-colors"
+            >
               Join Now
-            </button>
-          </div>
+            </a>
+            </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden">
