@@ -49,7 +49,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="bg-white  overflow-hidden mt-28">
+    <section className="bg-white  overflow-hidden pt-24">
       <div className="w-full">
         <div className="grid grid-cols-1 lg:grid-cols-1 gap-12 items-center">
           
@@ -131,7 +131,8 @@ const HeroSection = () => {
            
           </div>
 
-          <div className="absolute bottom-20 right-6 bg-emerald-600 text-white max-w-sm rounded-2xl shadow-lg p-4 z-20">
+          <div className="absolute bottom-20 right-6 bg-green-600 text-white max-w-sm rounded-2xl shadow-lg p-4 z-40 sm:right-6 sm:bottom-20 
+           md:right-10 md:bottom-24 max-sm:static max-sm:mx-4 max-sm:mt-4">
             <h3 className="text-xl font-bold mb-2">Chuna Sacco updates</h3>
             <p className="text-sm mb-4">
               We’ve just launched a new loan product to support small businesses.

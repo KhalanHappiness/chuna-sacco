@@ -8,7 +8,9 @@ import HeroSection from './components/HeroSection'
 import FinancialProductsSection from './components/FinancialProductsSection'
 import MemberTestimonials from './components/MemberTestimonials'
 import LatestUpdates from './components/LatestUpdates'
+import HomePage from './pages/HomePage'
 import Footer from './components/Footer'
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -17,10 +19,7 @@ function App() {
     <div className="min-h-screen bg-gray-50">
       <TopHeaderBar/>
       <Header />
-      <HeroSection/>
-      <FinancialProductsSection/>
-      <MemberTestimonials/>
-      <LatestUpdates/>
+      <HomePage/>
       <Footer/>
 
       

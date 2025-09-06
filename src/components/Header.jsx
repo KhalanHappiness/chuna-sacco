@@ -38,7 +38,7 @@ const Header = () => {
             <button className="text-gray-700 hover:text-emerald-600 transition-colors">Login</button>
             <a 
               href="https://applications.chunasacco.co.ke/index.php?r=new-membership" 
-              className="bg-emerald-500 text-white px-4 py-2 rounded-lg hover:bg-emerald-600 transition-colors"
+              className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-600 transition-colors"
             >
               Join Now
             </a>
@@ -114,7 +114,7 @@ const Header = () => {
               </button>
               <button 
                 onClick={handleLinkClick}
-                className="block w-full bg-emerald-500 text-white px-4 py-3 rounded-lg hover:bg-emerald-600 transition-all duration-200 shadow-md hover:shadow-lg"
+                className="block w-full bg-green-600 text-white px-4 py-3 rounded-lg hover:bg-emerald-600 transition-all duration-200 shadow-md hover:shadow-lg"
               >
                 Join Now
               </button>

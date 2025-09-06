@@ -142,7 +142,7 @@ const ImageProductCard = ({ icon: Icon, title, description, imageType, buttonTex
       <div className="p-6 relative">
         {/* Circular Icon */}
         <div className="absolute -top-6 left-6">
-          <div className="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center shadow-lg">
+          <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
             <Icon className="h-6 w-6 text-white" />
           </div>
         </div>
@@ -157,7 +157,7 @@ const ImageProductCard = ({ icon: Icon, title, description, imageType, buttonTex
           </p>
           
           {/* Read More Button */}
-          <button className="text-emerald-600 font-bold text-sm hover:text-emerald-800 transition-colors duration-300 flex items-center group">
+          <button className="text-green-600 font-bold text-sm hover:text-emerald-800 transition-colors duration-300 flex items-center group">
             {buttonText}
             <span className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300">→</span>
           </button>
@@ -263,7 +263,7 @@ const FinancialProductsSection = () => {
        
         
         <div className="text-center mt-12">
-          <button className="bg-emerald-500 text-white px-6 py-3 rounded-lg hover:bg-emerald-600 font-medium">
+          <button className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-600 font-medium">
             View All Products
           </button>
         </div>

@@ -94,7 +94,7 @@ const MemberTestimonials = () => {
         <div className="overflow-hidden shadow-2xl bg-white border-0 rounded-2xl">
           <div className="grid lg:grid-cols-2 min-h-[400px]">
             {/* Left Side - Testimonial Content */}
-            <div className="flex flex-col justify-center p-8 lg:p-12 xl:p-16 bg-gradient-to-br from-emerald-600 to-emerald-800 text-white relative">
+            <div className="flex flex-col justify-center p-8 lg:p-12 xl:p-16 bg-gradient-to-br from-green-600 to-green-800 text-white relative">
               <div className="absolute top-8 left-8 text-white/20">
                 <Quote size={80} />
               </div>
@@ -171,7 +171,7 @@ const MemberTestimonials = () => {
                       alt={`${currentTestimonial.name}'s profile`}
                       className="w-32 h-32 lg:w-40 lg:h-40 rounded-full object-cover border-4 border-emerald-500/20 shadow-xl"
                     />
-                    <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-white"></div>
+                    <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-600 rounded-full border-4 border-white"></div>
                   </div>
                 </div>
 
@@ -184,7 +184,7 @@ const MemberTestimonials = () => {
                     {currentTestimonial.role}
                   </p>
                   {currentTestimonial.business && (
-                    <p className="text-emerald-600 font-semibold">
+                    <p className="text-green-600 font-semibold">
                       {currentTestimonial.business}
                     </p>
                   )}

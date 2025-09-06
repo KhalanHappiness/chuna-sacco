@@ -143,7 +143,7 @@ const LatestUpdates = () => {
             ))}
             
             {/* Quick Stats */}
-            <div className="bg-emerald-600 rounded-xl p-6 text-white">
+            <div className="bg-green-600 rounded-xl p-6 text-white">
               <h3 className="font-bold text-lg mb-4">Chuna Sacco at a Glance</h3>
               <div className="grid grid-cols-2 gap-4">
                 {quickStats.map((stat, index) => (
@@ -152,7 +152,7 @@ const LatestUpdates = () => {
                       <stat.icon className="w-4 h-4" />
                     </div>
                     <div className="text-xl font-bold">{stat.value}</div>
-                    <div className="text-xs text-emerald-100">{stat.label}</div>
+                    <div className="text-xs text-green-100">{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -165,7 +165,7 @@ const LatestUpdates = () => {
          
           <a 
             href="https://www.chunasacco.co.ke/latest-news"   
-            className="bg-emerald-500 text-white px-8 py-3 rounded-lg hover:bg-emerald-600 font-semibold transition-all duration-300 hover:shadow-lg hover:-translate-y-1 inline-flex items-center gap-2 mx-auto"
+            className="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-500 font-semibold transition-all duration-300 hover:shadow-lg hover:-translate-y-1 inline-flex items-center gap-2 mx-auto"
             >
             View All News & Updates
             <ArrowRight className="w-4 h-4" />
