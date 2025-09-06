@@ -22,7 +22,7 @@ const Header = () => {
 
   // Products dropdown items
   const productItems = [
-    { name: 'Fosa Products', path: '/products/fosa' },
+    { name: 'Fosa Products', path: '/fosaProducts' },
     { name: 'BOSA Products', path: '/products/bosa' },
     { name: 'Insurance', path: '/products/insurance' },
     { name: 'Agency Banking', path: '/products/agency-banking' },
