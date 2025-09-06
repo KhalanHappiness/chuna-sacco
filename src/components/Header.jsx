@@ -3,16 +3,23 @@ import { Link, useLocation } from 'react-router-dom'
 import { ChevronDown } from 'lucide-react'
 import chunaLogo from '../assets/chuna.png'
 
-
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
   const [isProductsDropdownOpen, setIsProductsDropdownOpen] = React.useState(false)
+  const [isMobileProductsOpen, setIsMobileProductsOpen] = React.useState(false)
   const location = useLocation()
 
   // Close menu when a link is clicked
   const handleLinkClick = () => {
     setIsMenuOpen(false)
     setIsProductsDropdownOpen(false)
+    setIsMobileProductsOpen(false)
+  }
+
+  // Toggle mobile products submenu
+  const toggleMobileProducts = (e) => {
+    e.preventDefault()
+    setIsMobileProductsOpen(!isMobileProductsOpen)
   }
 
   // Check if current path matches the link
@@ -39,22 +46,22 @@ const Header = () => {
   ]
 
   return (
-    <header className="fixed top-8 left-0 w-full bg-white shadow-sm z-40">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+    <header className="fixed top-6 sm:top-8 left-0 w-full bg-white shadow-sm z-40">
+      <nav className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
+        <div className="flex justify-between items-center h-16 sm:h-20">
           <div className="flex items-center">
             {/* Logo - Link to home */}
             <Link to="/" onClick={handleLinkClick}>
               <img 
                 src={chunaLogo} 
                 alt="Chuna DT Sacco Logo" 
-                className="h-12 w-auto hover:opacity-90 transition-opacity"
+                className="h-8 sm:h-10 lg:h-12 w-auto hover:opacity-90 transition-opacity"
               />
             </Link>
           </div>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8 relative">
+          <div className="hidden lg:flex space-x-6 xl:space-x-8 relative">
             {navigationLinks.map((link) => (
               <div 
                 key={link.path} 
@@ -66,7 +73,7 @@ const Header = () => {
                   <div className="flex items-center">
                     <Link
                       to={link.path}
-                      className={`flex items-center space-x-1 transition-colors ${
+                      className={`flex items-center space-x-1 transition-colors text-sm xl:text-base ${
                         isActiveLink(link.path) || location.pathname.startsWith('/products/')
                           ? 'text-green-600 font-semibold border-b-2 border-green-600'
                           : 'text-gray-700 hover:text-green-600'
@@ -107,7 +114,7 @@ const Header = () => {
                 ) : (
                   <Link
                     to={link.path}
-                    className={`transition-colors ${
+                    className={`transition-colors text-sm xl:text-base ${
                       isActiveLink(link.path)
                         ? 'text-green-600 font-semibold border-b-2 border-green-600'
                         : 'text-gray-700 hover:text-green-600'
@@ -121,10 +128,10 @@ const Header = () => {
           </div>
           
           {/* Desktop Auth Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-3 xl:space-x-4">
             <Link
               to="/login"
-              className={`transition-colors ${
+              className={`transition-colors text-sm xl:text-base ${
                 isActiveLink('/login')
                   ? 'text-green-600 font-semibold'
                   : 'text-gray-700 hover:text-green-600'
@@ -136,80 +143,102 @@ const Header = () => {
               href="https://applications.chunasacco.co.ke/index.php?r=new-membership"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors"
+              className="bg-green-600 text-white px-3 py-2 xl:px-4 rounded-lg hover:bg-green-700 transition-colors text-sm xl:text-base"
             >
               Join Now
             </a>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-gray-700 hover:text-green-600 focus:outline-none focus:text-green-600 transition-colors p-2"
               aria-label="Toggle menu"
             >
-              <div className="relative w-6 h-6">
-                <span className={`absolute block h-0.5 w-6 bg-current transition-all duration-300 ease-in-out ${isMenuOpen ? 'rotate-45 top-3' : 'top-1'}`}></span>
-                <span className={`absolute block h-0.5 w-6 bg-current transition-all duration-300 ease-in-out top-3 ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
-                <span className={`absolute block h-0.5 w-6 bg-current transition-all duration-300 ease-in-out ${isMenuOpen ? '-rotate-45 top-3' : 'top-5'}`}></span>
+              <div className="relative w-5 h-5 sm:w-6 sm:h-6">
+                <span className={`absolute block h-0.5 w-full bg-current transition-all duration-300 ease-in-out ${isMenuOpen ? 'rotate-45 top-2.5 sm:top-3' : 'top-1'}`}></span>
+                <span className={`absolute block h-0.5 w-full bg-current transition-all duration-300 ease-in-out top-2.5 sm:top-3 ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
+                <span className={`absolute block h-0.5 w-full bg-current transition-all duration-300 ease-in-out ${isMenuOpen ? '-rotate-45 top-2.5 sm:top-3' : 'top-4 sm:top-5'}`}></span>
               </div>
             </button>
           </div>
         </div>
 
         {/* Mobile Navigation Menu */}
-        <div className={`md:hidden absolute top-20 left-0 right-0 bg-white shadow-lg z-50 transition-all duration-300 ease-in-out ${
+        <div className={`lg:hidden absolute top-16 sm:top-20 left-0 right-0 bg-white shadow-lg border-t border-gray-100 z-50 transition-all duration-300 ease-in-out ${
           isMenuOpen 
             ? 'opacity-100 translate-y-0 visible' 
             : 'opacity-0 -translate-y-4 invisible'
         }`}>
-          <div className="px-4 pt-4 pb-6 space-y-2">
+          <div className="px-4 pt-4 pb-6 space-y-2 max-h-[calc(100vh-5rem)] overflow-y-auto">
             {navigationLinks.map((link) => (
               <div key={link.path}>
-                <Link
-                  to={link.path}
-                  onClick={handleLinkClick}
-                  className={`block px-4 py-3 rounded-lg transition-all duration-200 text-center ${
-                    isActiveLink(link.path) || (link.hasDropdown && location.pathname.startsWith('/products/'))
-                      ? 'text-green-600 bg-green-50 font-semibold'
-                      : 'text-gray-700 hover:text-green-600 hover:bg-green-50'
-                  }`}
-                >
-                  {link.name}
-                </Link>
-                
-                {/* Mobile Products Submenu */}
-                {link.hasDropdown && (
-                  <div className="ml-4 mt-2 space-y-1">
-                    {productItems.map((item) => (
-                      <Link
-                        key={item.path}
-                        to={item.path}
-                        onClick={handleLinkClick}
-                        className={`block px-4 py-2 text-sm rounded-lg transition-all duration-200 ${
-                          isActiveLink(item.path)
-                            ? 'text-green-600 bg-green-50 font-medium'
-                            : 'text-gray-600 hover:text-green-600 hover:bg-green-50'
-                        }`}
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
-                  </div>
+                {link.hasDropdown ? (
+                  <>
+                    <button
+                      onClick={toggleMobileProducts}
+                      className={`w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 text-base font-medium text-left ${
+                        isActiveLink(link.path) || location.pathname.startsWith('/products/')
+                          ? 'text-green-600 bg-green-50 font-semibold'
+                          : 'text-gray-800 hover:text-green-600 hover:bg-green-50'
+                      }`}
+                    >
+                      <span>{link.name}</span>
+                      <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${
+                        isMobileProductsOpen ? 'rotate-180' : ''
+                      }`} />
+                    </button>
+                    
+                    {/* Mobile Products Submenu */}
+                    <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                      isMobileProductsOpen 
+                        ? 'max-h-96 opacity-100 mt-2' 
+                        : 'max-h-0 opacity-0'
+                    }`}>
+                      <div className="ml-4 space-y-1 bg-gray-50 rounded-lg p-2">
+                        {productItems.map((item) => (
+                          <Link
+                            key={item.path}
+                            to={item.path}
+                            onClick={handleLinkClick}
+                            className={`block px-3 py-2.5 text-sm rounded-md transition-all duration-200 ${
+                              isActiveLink(item.path)
+                                ? 'text-green-600 bg-white font-medium shadow-sm'
+                                : 'text-gray-600 hover:text-green-600 hover:bg-white hover:shadow-sm'
+                            }`}
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <Link
+                    to={link.path}
+                    onClick={handleLinkClick}
+                    className={`block px-4 py-3 rounded-lg transition-all duration-200 text-base font-medium ${
+                      isActiveLink(link.path)
+                        ? 'text-green-600 bg-green-50 font-semibold'
+                        : 'text-gray-800 hover:text-green-600 hover:bg-green-50'
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
                 )}
               </div>
             ))}
             
             {/* Mobile Auth Buttons */}
-            <div className="pt-4 space-y-3 border-t border-gray-200 mt-4">
+            <div className="pt-4 space-y-3 border-t border-gray-200 mt-6">
               <Link
                 to="/login"
                 onClick={handleLinkClick}
-                className={`block w-full px-4 py-3 rounded-lg transition-all duration-200 text-center ${
+                className={`block w-full px-4 py-3 rounded-lg transition-all duration-200 text-center font-medium ${
                   isActiveLink('/login')
                     ? 'text-green-600 bg-green-50 font-semibold'
-                    : 'text-gray-700 hover:text-green-600 hover:bg-green-50'
+                    : 'text-gray-800 hover:text-green-600 hover:bg-green-50 border border-gray-200'
                 }`}
               >
                 Login
@@ -219,7 +248,7 @@ const Header = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleLinkClick}
-                className="block w-full bg-green-600 text-white px-4 py-3 rounded-lg hover:bg-green-600 transition-all duration-200 shadow-md hover:shadow-lg"
+                className="block w-full bg-green-600 text-white px-4 py-3 rounded-lg hover:bg-green-700 transition-all duration-200 shadow-md hover:shadow-lg font-medium text-center"
               >
                 Join Now
               </a>
@@ -230,7 +259,7 @@ const Header = () => {
         {/* Overlay backdrop */}
         {isMenuOpen && (
           <div 
-            className="md:hidden fixed inset-0 bg-black bg-opacity-25 z-40"
+            className="lg:hidden fixed inset-0 bg-black bg-opacity-25 z-40"
             onClick={() => setIsMenuOpen(false)}
           ></div>
         )}
