@@ -90,18 +90,7 @@ const InsurancePage = () => {
             </p>
           </div>
 
-          {/* Stats */}
-          {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center group cursor-pointer">
-                <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl">
-                  <stat.icon className="w-8 h-8 md:w-10 md:h-10 text-white" />
-                </div>
-                <div className="text-2xl md:text-3xl font-bold text-gray-800 mb-1">{stat.number}</div>
-                <div className="text-sm md:text-base text-gray-600">{stat.label}</div>
-              </div>
-            ))}
-          </div> */}
+         
         </div>
       </section>
 
@@ -117,10 +106,10 @@ const InsurancePage = () => {
                 }`}
                 onMouseEnter={() => setActiveService(index)}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-green-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-green-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-b-4 border-b-green-600"></div>
                 
                 <div className="relative z-10">
-                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg ">
                     <service.icon className="w-8 h-8 text-white" />
                   </div>
                   

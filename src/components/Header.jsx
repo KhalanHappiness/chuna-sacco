@@ -22,18 +22,18 @@ const Header = () => {
 
   // Products dropdown items
   const productItems = [
-    { name: 'Fosa Products', path: '/fosaProducts' },
+    { name: 'FOSA Products', path: '/fosaProducts' },
     { name: 'BOSA Products', path: '/bosaProducts' },
     { name: 'Insurance', path: '/insurance' },
     { name: 'Agency Banking', path: '/products/agency-banking' },
-    { name: 'Mchuna', path: '/products/mchuna' }
+    { name: 'Mchuna', path: '/mchuna' }
   ]
 
   // Navigation links configuration
   const navigationLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
-    { name: 'Products', path: '/products', hasDropdown: true },
+    { name: 'Products', path: '/fosaProducts', hasDropdown: true },
     { name: 'Membership', path: '/membership' },
     { name: 'Contact', path: '/contact' }
   ]

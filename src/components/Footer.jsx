@@ -1,4 +1,5 @@
 import { Users, TrendingUp, Shield, BookOpen, Building2, CreditCard, Phone, Mail, MapPin, CheckCircle, ArrowRight } from 'lucide-react';
+import chunaLogo from '../assets/chuna.png'
 
 const Footer = () => {
 
@@ -18,10 +19,14 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <div className="flex items-center mb-4">
-              <div className="bg-emerald-500 text-white p-2 rounded-lg mr-3">
-                <Building2 className="h-6 w-6" />
+              <div>
+                <img 
+                  src={chunaLogo} 
+                  alt="Chuna DT Sacco Logo" 
+                  className="h-12 w-auto hover:opacity-90 transition-opacity"
+                />
               </div>
-              <span className="text-xl font-bold">Chuna DT Sacco</span>
+            
             </div>
             <p className="text-gray-400 mb-4">
               Empowering the University of Nairobi community with tailored financial solutions. We've been serving members since 1976.

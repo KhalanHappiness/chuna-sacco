@@ -132,7 +132,7 @@ const ImageProductCard = ({ icon: Icon, title, description, imageType, buttonTex
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-sm hover:shadow-xl transform hover:scale-105 transition-all duration-300 overflow-hidden border border-gray-100">
+    <div className="bg-white rounded-xl shadow-sm hover:shadow-xl transform hover:scale-105 transition-all duration-300 overflow-hidden border border-gray-100 border-b-4 border-b-green-600">
       {/* Image Section */}
       <div className={`${getImageBackground(imageType)} relative h-40 overflow-hidden`}>
         {getIllustration(imageType)}
