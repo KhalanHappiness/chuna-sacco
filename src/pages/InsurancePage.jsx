@@ -66,7 +66,7 @@ const InsurancePage = () => {
   
 
       {/* Hero Section */}
-      <section className="relative py-16 md:py-24 bg-gradient-to-br from-green-50 via-white to-blue-50 overflow-hidden mt-28">
+      <section className="relative py-8 sm:py-10 md:py-16 lg:py-24 bg-gradient-to-br from-green-50 via-white to-blue-50 overflow-hidden mt-28">
         <div className="absolute inset-0 bg-gradient-to-r from-green-100/30 to-blue-100/30"></div>
         <div className="absolute top-10 left-10 w-64 h-64 bg-green-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
         <div className="absolute top-20 right-10 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>

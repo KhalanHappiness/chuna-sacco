@@ -221,15 +221,17 @@ const FosaProducts = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       {/* Header - Mobile Optimized */}
+       {/* Header - Mobile Optimized */}
       <div className="bg-white/95 px-4 sm:px-6 py-8 sm:py-14 text-gray-900 mt-16 sm:mt-28">
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
-            <h1 className="mb-3 sm:mb-4 text-2xl sm:text-3xl font-bold leading-tight">
-              Chuna Sacco Front Office Service Activities
+            <div className="mb-4 sm:mb-6 text-xs sm:text-sm font-semibold text-green-600 uppercase tracking-wide">
+              FOSA
+            </div>
+            <h1 className="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl font-bold text-green-800 leading-tight">
+              Chuna Front Office Products Available For You
             </h1>
-            <p className="text-base sm:text-xl text-gray-500 leading-relaxed">
-              Comprehensive financial services designed for your needs
-            </p>
+            <div className="mx-auto h-1 w-12 sm:w-16 bg-green-600 mb-4 sm:mb-8"></div>
           </div>
         </div>
       </div>
