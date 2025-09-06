@@ -21,7 +21,6 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-gray-50">
-        {/* These components appear on all pages */}
         <TopHeaderBar />
         <Header />
         
@@ -56,7 +55,7 @@ const NotFoundPage = () => (
       <p className="text-gray-500 mb-8">The page you're looking for doesn't exist.</p>
       <a 
         href="/" 
-        className="bg-emerald-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-700 transition-colors"
+        className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors"
       >
         Go Home
       </a>
