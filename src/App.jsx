@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import TopHeaderBar from './components/TopHeaderBar'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop'
 
 // Page components
 import HomePage from './pages/HomePage'
@@ -24,6 +25,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop/>
       <div className="min-h-screen bg-gray-50">
         <TopHeaderBar />
         <Header />
