@@ -34,12 +34,17 @@ const ServiceCard = ({ title, amount, period, features, downloadText, icon: Icon
         )}
         
         <ul className="mb-6 space-y-3">
-          {features.map((feature, index) => (
+          {features.slice(0, isHovered ? features.length : 3).map((feature, index) => (
             <li key={index} className="flex items-start space-x-2">
               <CheckCircle2 className="mt-0.5 h-4 w-4 text-green-600 flex-shrink-0" />
               <span className="text-sm text-green-800">{feature}</span>
             </li>
           ))}
+          {features.length > 3 && !isHovered && (
+            <div className="text-sm text-gray-500 font-medium">
+              +{features.length - 3} more benefits
+            </div>
+          )}
         </ul>
         
         <button 
@@ -55,6 +60,7 @@ const ServiceCard = ({ title, amount, period, features, downloadText, icon: Icon
     </div>
   );
 };
+
 
 const FosaProducts = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -216,13 +222,13 @@ const FosaProducts = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       {/* Header */}
-      <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-16 text-white">
+      <div className=" bg-white/95 px-6 py-14 text-gray-900 mt-28">
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
-            <h1 className="mb-4 text-4xl font-bold md:text-5xl">
-              Chuna Front Office Service Activities
+            <h1 className="mb-4 text-3xl font-bold md:text-3xl">
+              Chuna Sacco Front Office Service Activities
             </h1>
-            <p className="text-xl text-green-100 md:text-2xl">
+            <p className="text-xl text-gray-500 md:text-1xl">
               Comprehensive financial services designed for your needs
             </p>
           </div>
