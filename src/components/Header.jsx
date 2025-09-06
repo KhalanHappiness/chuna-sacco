@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { ChevronDown } from 'lucide-react'
+import chunaLogo from '../assets/chuna.png'
+
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
@@ -44,7 +46,7 @@ const Header = () => {
             {/* Logo - Link to home */}
             <Link to="/" onClick={handleLinkClick}>
               <img 
-                src="/api/placeholder/120/48" 
+                src={chunaLogo} 
                 alt="Chuna DT Sacco Logo" 
                 className="h-12 w-auto hover:opacity-90 transition-opacity"
               />
