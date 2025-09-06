@@ -10,6 +10,7 @@ import Footer from './components/Footer'
 import HomePage from './pages/HomePage'
 import FosaProducts from './pages/FosaProducts'
 import BosaProducts from './pages/BosaProducts'
+import InsurancePage from './pages/InsurancePage'
 // import AboutPage from './pages/AboutPage'
 // import ProductsPage from './pages/ProductsPage'
 // import FOSAServicesPage from './pages/FOSAServicesPage'
@@ -32,6 +33,8 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/fosaProducts" element={<FosaProducts />} />
             <Route path="/bosaProducts" element={<BosaProducts />} />
+            <Route path="/insurance" element={<InsurancePage />} />
+
 
 
             {/* <Route path="/about" element={<AboutPage />} />
