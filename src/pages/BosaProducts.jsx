@@ -226,13 +226,13 @@ const BosaProducts = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       {/* Header */}
-      <div className="bg-white/95 px-6 py-14 text-gray-900">
+      <div className="bg-white/95 px-6 py-14 text-gray-900 mt-28">
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
             <div className="mb-6 text-sm font-semibold text-green-600 uppercase tracking-wide">
               BOSA
             </div>
-            <h1 className="mb-4 text-4xl font-bold text-green-800 md:text-5xl">
+            <h1 className="mb-4 text-4xl font-bold text-green-800 md:text-3xl">
               Chuna Back Office Products Available For You
             </h1>
             <div className="mx-auto h-1 w-16 bg-green-600 mb-8"></div>
@@ -276,108 +276,8 @@ const BosaProducts = () => {
         </div>
       </div>
 
-      {/* Footer Links Section */}
-      <div className="bg-green-600 text-white px-6 py-16">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-8 md:grid-cols-3">
-            {/* Related Links */}
-            <div>
-              <h3 className="mb-6 text-xl font-bold">RELATED LINKS</h3>
-              <div className="space-y-3 text-green-100">
-                <div className="hover:text-white cursor-pointer transition-colors">
-                  • Sacco Societies Regulatory Authority
-                </div>
-                <div className="hover:text-white cursor-pointer transition-colors">
-                  • Kenya Union of Savings and Credit Co-operatives
-                </div>
-                <div className="hover:text-white cursor-pointer transition-colors">
-                  • Co-operative Bank
-                </div>
-                <div className="hover:text-white cursor-pointer transition-colors">
-                  • University of Nairobi
-                </div>
-                <div className="hover:text-white cursor-pointer transition-colors">
-                  • CIC Insurance Group Insurance company
-                </div>
-                <div className="hover:text-white cursor-pointer transition-colors">
-                  • KEZA LOAN Group
-                </div>
-              </div>
-            </div>
-
-            {/* Quick Links */}
-            <div>
-              <h3 className="mb-6 text-xl font-bold">QUICK LINKS</h3>
-              <div className="space-y-3 text-green-100">
-                <div className="hover:text-white cursor-pointer transition-colors">
-                  • MCHAMA APPLICATION
-                </div>
-                <div className="hover:text-white cursor-pointer transition-colors">
-                  • Help Desk
-                </div>
-                <div className="hover:text-white cursor-pointer transition-colors">
-                  • Online Loan Application
-                </div>
-                <div className="hover:text-white cursor-pointer transition-colors">
-                  • Asset Financing
-                </div>
-                <div className="hover:text-white cursor-pointer transition-colors">
-                  • Group Loan
-                </div>
-                <div className="hover:text-white cursor-pointer transition-colors">
-                  • New Member Registration
-                </div>
-              </div>
-            </div>
-
-            {/* Contact Info */}
-            <div>
-              <h3 className="mb-6 text-xl font-bold">CONTACT INFO</h3>
-              <div className="space-y-4 text-green-100">
-                <div className="flex items-start space-x-3">
-                  <Home className="h-5 w-5 mt-1 flex-shrink-0" />
-                  <span>University of Nairobi Harry Thuku Rd</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <span className="text-lg font-semibold">+254 728 111 222</span>
-                </div>
-                <div className="text-sm">
-                  <span className="font-medium">Email Us</span>
-                </div>
-                <div className="text-sm">
-                  <span className="font-medium">Mon - Fri 8:00 am - 5:00pm</span>
-                  <br />
-                  <span>Sat-Sun CLOSED</span>
-                </div>
-                <div className="pt-4">
-                  <span className="text-sm hover:text-white cursor-pointer transition-colors">
-                    Privacy Policy
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Copyright Footer */}
-      <div className="bg-gray-900 text-white px-6 py-4">
-        <div className="mx-auto max-w-7xl">
-          <div className="flex items-center justify-between">
-            <div className="text-sm text-gray-400">
-              © Copyright Chuna Co-operative Savings & Credit Society Ltd 2024. All Rights Reserved.
-            </div>
-            <div className="flex space-x-4">
-              <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center cursor-pointer hover:bg-blue-700 transition-colors">
-                <span className="text-xs font-bold">f</span>
-              </div>
-              <div className="w-8 h-8 rounded-full bg-blue-400 flex items-center justify-center cursor-pointer hover:bg-blue-500 transition-colors">
-                <span className="text-xs font-bold">t</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    
+      
     </div>
   );
 };
