@@ -8,6 +8,7 @@ import Footer from './components/Footer'
 
 // Page components
 import HomePage from './pages/HomePage'
+import FosaProducts from './pages/FosaProducts'
 // import AboutPage from './pages/AboutPage'
 // import ProductsPage from './pages/ProductsPage'
 // import FOSAServicesPage from './pages/FOSAServicesPage'
@@ -28,6 +29,8 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/fosaProducts" element={<FosaProducts />} />
+
             {/* <Route path="/about" element={<AboutPage />} />
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/products/fosa-services" element={<FOSAServicesPage />} />
