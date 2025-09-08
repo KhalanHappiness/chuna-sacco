@@ -72,13 +72,17 @@ const StarRating = ({ rating, size = "w-4 h-4" }) => {
   );
 };
 
+
 const LoanCalculator = () => {
   const [loanAmount, setLoanAmount] = useState(100000);
   const [period, setPeriod] = useState(12);
-  const [interestRate] = useState(12); // Fixed rate for display
-  
-  const monthlyPayment = (loanAmount * (interestRate / 100 / 12) * Math.pow(1 + (interestRate / 100 / 12), period)) / 
-                        (Math.pow(1 + (interestRate / 100 / 12), period) - 1);
+  const [interestRate, setInterestRate] = useState(12);
+
+  const monthlyPayment =
+    (loanAmount *
+      (interestRate / 100 / 12) *
+      Math.pow(1 + interestRate / 100 / 12, period)) /
+    (Math.pow(1 + interestRate / 100 / 12, period) - 1);
 
   return (
     <div className="bg-white rounded-3xl shadow-xl p-6 border border-gray-100 hover:shadow-2xl transition-all duration-500 h-full flex flex-col">
@@ -100,20 +104,18 @@ const LoanCalculator = () => {
           <label className="block text-sm font-semibold text-gray-700 mb-2">
             Loan Amount (KSh)
           </label>
-          <div className="relative">
-            <input
-              type="range"
-              min="10000"
-              max="2000000"
-              step="10000"
-              value={loanAmount}
-              onChange={(e) => setLoanAmount(Number(e.target.value))}
-              className="w-full h-2 bg-gray-200 rounded-full appearance-none cursor-pointer slider"
-            />
-            <div className="flex justify-between text-xs text-gray-500 mt-1">
-              <span>10K</span>
-              <span>2M</span>
-            </div>
+          <input
+            type="range"
+            min="10000"
+            max="2000000"
+            step="10000"
+            value={loanAmount}
+            onChange={(e) => setLoanAmount(Number(e.target.value))}
+            className="w-full h-2 bg-gray-200 rounded-full cursor-pointer"
+          />
+          <div className="flex justify-between text-xs text-gray-500 mt-1">
+            <span>10K</span>
+            <span>2M</span>
           </div>
           <div className="mt-2 text-lg font-bold text-green-600">
             KSh {loanAmount.toLocaleString()}
@@ -125,24 +127,40 @@ const LoanCalculator = () => {
           <label className="block text-sm font-semibold text-gray-700 mb-2">
             Loan Period (Months)
           </label>
-          <div className="relative">
-            <input
-              type="range"
-              min="6"
-              max="60"
-              step="6"
-              value={period}
-              onChange={(e) => setPeriod(Number(e.target.value))}
-              className="w-full h-2 bg-gray-200 rounded-full appearance-none cursor-pointer slider"
-            />
-            <div className="flex justify-between text-xs text-gray-500 mt-1">
-              <span>6M</span>
-              <span>60M</span>
-            </div>
+          <input
+            type="range"
+            min="6"
+            max="60"
+            step="6"
+            value={period}
+            onChange={(e) => setPeriod(Number(e.target.value))}
+            className="w-full h-2 bg-gray-200 rounded-full cursor-pointer"
+          />
+          <div className="flex justify-between text-xs text-gray-500 mt-1">
+            <span>6M</span>
+            <span>60M</span>
           </div>
           <div className="mt-2 text-lg font-bold text-blue-600">
             {period} months
           </div>
+        </div>
+
+        {/* Interest Rate - Dropdown */}
+        <div>
+          <label className="block text-sm font-semibold text-gray-700 mb-2">
+            Interest Rate (% p.a.)
+          </label>
+          <select
+            value={interestRate}
+            onChange={(e) => setInterestRate(Number(e.target.value))}
+            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+          >
+            {[5, 7.5, 10, 12, 15, 18, 20, 22.5, 25].map((rate) => (
+              <option key={rate} value={rate}>
+                {rate}%
+              </option>
+            ))}
+          </select>
         </div>
 
         {/* Results */}
@@ -151,7 +169,9 @@ const LoanCalculator = () => {
             <div className="text-center">
               <div className="flex items-center justify-center gap-1 mb-1">
                 <DollarSign className="w-4 h-4 text-green-600" />
-                <span className="text-xs font-medium text-gray-700">Monthly Payment</span>
+                <span className="text-xs font-medium text-gray-700">
+                  Monthly Payment
+                </span>
               </div>
               <div className="text-lg font-bold text-green-600">
                 KSh {Math.round(monthlyPayment).toLocaleString()}
@@ -160,7 +180,9 @@ const LoanCalculator = () => {
             <div className="text-center">
               <div className="flex items-center justify-center gap-1 mb-1">
                 <Percent className="w-4 h-4 text-emerald-600" />
-                <span className="text-xs font-medium text-gray-700">Interest Rate</span>
+                <span className="text-xs font-medium text-gray-700">
+                  Interest Rate
+                </span>
               </div>
               <div className="text-lg font-bold text-emerald-600">
                 {interestRate}% p.a.
@@ -173,10 +195,12 @@ const LoanCalculator = () => {
           </button>
         </div>
       </div>
-
     </div>
   );
 };
+
+
+
 
 const YouTubeVideoCard = () => {
 
