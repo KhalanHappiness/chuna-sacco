@@ -1,61 +1,77 @@
 import React, { useState } from 'react';
 import { Download, ChevronRight, Clock, DollarSign, Users, BookOpen, PiggyBank, AlertCircle, CheckCircle2 } from 'lucide-react';
 
-const ServiceCard = ({ title, amount, period, features, downloadText, icon: Icon, highlighted = false }) => {
+const ServiceCard = ({ title, amount, period, features, downloadText, icon: Icon, highlighted = false, image }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div 
-      className={`relative overflow-hidden rounded-xl sm:rounded-2xl border-2 border-green-200 bg-white p-4 sm:p-6 transition-all duration-300 hover:shadow-xl sm:hover:scale-105 border-b-4 border-b-green-600 ${highlighted ? 'ring-2 ring-green-500 ring-offset-2' : ''}`}
+      className={`relative overflow-hidden rounded-xl sm:rounded-2xl border-2 border-green-200 bg-white transition-all duration-300 hover:shadow-xl sm:hover:scale-105 border-b-4 border-b-green-600 ${highlighted ? 'ring-2 ring-green-500 ring-offset-2' : ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {highlighted && (
-        <div className="absolute -right-8 sm:-right-12 -top-8 sm:-top-12 h-16 w-16 sm:h-24 sm:w-24 rounded-full bg-green-500 opacity-10"></div>
-      )}
-      
-      <div className="relative z-10">
-        <div className="mb-3 sm:mb-4 flex items-center justify-between">
-          <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-green-600" />
-          {highlighted && (
-            <span className="rounded-full bg-green-500 px-2 py-1 sm:px-3 text-xs font-semibold text-white">
-              POPULAR
-            </span>
-          )}
-        </div>
+      {/* Header Image */}
+      <div className="relative h-32 sm:h-40 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-gradient-to-br from-green-400 to-green-600 opacity-90"
+          style={{
+            backgroundImage: image ? `url(${image})` : 'none',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-green-500/80 to-green-600/80" />
         
-        <h3 className="mb-2 sm:mb-3 text-lg sm:text-xl font-bold text-green-800 leading-tight">{title}</h3>
-        
-        {amount && (
-          <div className="mb-3 sm:mb-4">
-            <div className="text-xl sm:text-3xl font-bold text-green-600 leading-tight">Ksh {amount}</div>
-            {period && <div className="mt-1 text-xs sm:text-sm text-green-800 opacity-70">/ {period}</div>}
+        {/* Icon overlay */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="rounded-full bg-white/20 p-3 sm:p-4 backdrop-blur-sm">
+            <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
           </div>
+        </div>
+
+        {highlighted && (
+          <span className="absolute top-3 right-3 rounded-full bg-yellow-400 px-2 py-1 sm:px-3 text-xs font-bold text-green-800 shadow-lg">
+            POPULAR
+          </span>
         )}
-        
-        <ul className="mb-4 sm:mb-6 space-y-2 sm:space-y-3">
-          {features.slice(0, isHovered ? features.length : 3).map((feature, index) => (
-            <li key={index} className="flex items-start space-x-2">
-              <CheckCircle2 className="mt-0.5 h-3 w-3 sm:h-4 sm:w-4 text-green-600 flex-shrink-0" />
-              <span className="text-xs sm:text-sm text-green-800 leading-relaxed">{feature}</span>
-            </li>
-          ))}
-          {features.length > 3 && !isHovered && (
-            <div className="text-xs sm:text-sm text-gray-500 font-medium">
-              +{features.length - 3} more benefits
+      </div>
+
+      {/* Card Content */}
+      <div className="p-4 sm:p-6">
+        <div className="relative z-10">
+          <h3 className="mb-2 sm:mb-3 text-lg sm:text-xl font-bold text-green-800 leading-tight">{title}</h3>
+          
+          {amount && (
+            <div className="mb-3 sm:mb-4">
+              <div className="text-xl sm:text-3xl font-bold text-green-600 leading-tight">Ksh {amount}</div>
+              {period && <div className="mt-1 text-xs sm:text-sm text-green-800 opacity-70">/ {period}</div>}
             </div>
           )}
-        </ul>
-        
-        <button 
-          className="group w-full rounded-lg bg-green-600 hover:bg-green-700 px-3 py-2.5 sm:px-4 sm:py-3 font-semibold text-white transition-all duration-200 hover:shadow-lg text-sm sm:text-base"
-        >
-          <span className="flex items-center justify-center space-x-2">
-            <Download className="h-3 w-3 sm:h-4 sm:w-4" />
-            <span>{downloadText}</span>
-            <ChevronRight className={`h-3 w-3 sm:h-4 sm:w-4 transition-transform ${isHovered ? 'translate-x-1' : ''}`} />
-          </span>
-        </button>
+          
+          <ul className="mb-4 sm:mb-6 space-y-2 sm:space-y-3">
+            {features.slice(0, isHovered ? features.length : 3).map((feature, index) => (
+              <li key={index} className="flex items-start space-x-2">
+                <CheckCircle2 className="mt-0.5 h-3 w-3 sm:h-4 sm:w-4 text-green-600 flex-shrink-0" />
+                <span className="text-xs sm:text-sm text-green-800 leading-relaxed">{feature}</span>
+              </li>
+            ))}
+            {features.length > 3 && !isHovered && (
+              <div className="text-xs sm:text-sm text-gray-500 font-medium">
+                +{features.length - 3} more benefits
+              </div>
+            )}
+          </ul>
+          
+          <button 
+            className="group w-full rounded-lg bg-green-600 hover:bg-green-700 px-3 py-2.5 sm:px-4 sm:py-3 font-semibold text-white transition-all duration-200 hover:shadow-lg text-sm sm:text-base"
+          >
+            <span className="flex items-center justify-center space-x-2">
+              <Download className="h-3 w-3 sm:h-4 sm:w-4" />
+              <span>{downloadText}</span>
+              <ChevronRight className={`h-3 w-3 sm:h-4 sm:w-4 transition-transform ${isHovered ? 'translate-x-1' : ''}`} />
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -78,6 +94,7 @@ const FosaProducts = () => {
       amount: "60% of Basic Salary",
       period: "PAYABLE IN 14 MONTHS",
       category: 'loans',
+      image: 'https://images.unsplash.com/photo-1633158829875-e5316a358c6f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
       features: [
         "Maximum loan amount is 60% of Member basic salary",
         "Member salary must pass through FOSA for at least 12 months",
@@ -95,6 +112,7 @@ const FosaProducts = () => {
       amount: "60% of Net Salary", 
       period: "PAYABLE IN 14 MONTHS",
       category: 'loans',
+      image: 'https://images.unsplash.com/photo-1677756119517-756a188d2d94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
       features: [
         "Salary must pass through FOSA at least three months",
         "Loan recovered within a maximum of one (1) month",
@@ -109,6 +127,7 @@ const FosaProducts = () => {
       amount: "300,000 max",
       period: "PAYABLE IN 48 MONTHS", 
       category: 'loans',
+      image: 'https://images.unsplash.com/photo-1618044733300-9472054094ee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
       features: [
         "Third rule apply",
         "Not pegged to deposit contribution but on salary",
@@ -127,7 +146,8 @@ const FosaProducts = () => {
       title: "Emergency Loan 20 Months",
       amount: "300,000 Max",
       period: "PAYABLE IN 20 MONTHS",
-      category: 'loans', 
+      category: 'loans',
+      image: 'https://images.unsplash.com/photo-1640622300473-977435c38c04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
       features: [
         "Interest rate of 3% per month amortized",
         "Turn around time is one day",
@@ -142,6 +162,7 @@ const FosaProducts = () => {
       amount: "100,000 Max",
       period: "PAYABLE IN 16 MONTHS",
       category: 'loans',
+      image: 'https://images.unsplash.com/photo-1639754390580-2e7437267698?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
       features: [
         "Designed for new Sacco members",
         "A least (1/3) of the loan is deducted as deposits and 1st 5000 share capital",
@@ -159,6 +180,7 @@ const FosaProducts = () => {
       amount: "Savings Account",
       period: "INTEREST PAYABLE IN 30 MONTHS",
       category: 'savings',
+      image: 'https://images.unsplash.com/photo-1633265486064-086b219458ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
       features: [
         "Designed for all Sacco members",
         "Minimum monthly contribution of 500 shillings",
@@ -174,6 +196,7 @@ const FosaProducts = () => {
       amount: "Savings Account",
       period: "INTEREST PAYABLE IN 12 MONTHS",
       category: 'savings',
+      image: 'https://images.unsplash.com/photo-1640622843377-6b5af9417e70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
       features: [
         "Designed for all Sacco members",
         "Minimum monthly contribution of 500 shillings",
@@ -189,6 +212,7 @@ const FosaProducts = () => {
       amount: "Savings Account", 
       period: "INTEREST PAYABLE IN 24 MONTHS",
       category: 'savings',
+      image: 'https://images.unsplash.com/photo-1638913970779-388698e52c7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
       features: [
         "Designed for all Sacco members",
         "Minimum monthly contribution of 500 shillings",
@@ -203,6 +227,7 @@ const FosaProducts = () => {
       title: "FOSA Ordinary Account",
       amount: "Ordinary Account",
       category: 'accounts',
+      image: 'https://images.unsplash.com/photo-1640622300473-977435c38c04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
       features: [
         "No ledger fees or account maintenance Fees",
         "No withdrawal limit",
@@ -221,7 +246,6 @@ const FosaProducts = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       {/* Header - Mobile Optimized */}
-       {/* Header - Mobile Optimized */}
       <div className="bg-white/95 px-4 sm:px-6 py-8 sm:py-14 text-gray-900 mt-16 sm:mt-28">
         <div className="mx-auto max-w-7xl">
           <div className="text-center">

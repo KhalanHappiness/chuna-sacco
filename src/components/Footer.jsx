@@ -28,8 +28,11 @@ const Footer = () => {
               </div>
             
             </div>
+            <p className="text-gray-400 mb-2">
+             Our Mission
+            </p>
             <p className="text-gray-400 mb-4">
-             
+             To mobilize savings and provide affordable financial services aimed at promoting socio-economic welfare of members through prudent management and diversification of products and services while recognizing the interest of stakeholders.
             </p>
           </div>
           
