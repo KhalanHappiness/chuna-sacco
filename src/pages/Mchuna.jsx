@@ -102,31 +102,30 @@ const Mchuna = () => {
         </div>
       </main>
 
-      {/* 🎬 Video Modal */}
-      {videoOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
-          <div className="bg-white rounded-2xl shadow-xl overflow-hidden w-[90%] max-w-lg relative">
-            {/* Close button */}
-            <button 
-              onClick={() => setVideoOpen(false)} 
-              className="absolute top-2 right-2 text-black text-2xl font-bold"
-            >
-              ✕
-            </button>
-            {/* YouTube iframe */}
-            <div className="aspect-w-16 aspect-h-9">
-              <iframe
-                className="w-full h-full"
-                src="https://www.youtube.com/embed/YOUR_VIDEO_ID?autoplay=1"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="autoplay; encrypted-media; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-          </div>
-        </div>
-      )}
+     {/* 🎬 Video Modal */}
+{videoOpen && (
+  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
+    <div className="bg-white rounded-2xl shadow-xl overflow-hidden w-[90%] max-w-5xl h-[70vh] relative">
+      {/* Close button */}
+      <button 
+        onClick={() => setVideoOpen(false)} 
+        className="absolute top-2 right-2 text-black text-2xl font-bold z-10"
+      >
+        ✕
+      </button>
+      {/* YouTube iframe */}
+      <iframe
+        className="w-full h-full"
+        src="https://www.youtube.com/embed/K9jOswGlNoA?autoplay=1"
+        title="YouTube video player"
+        frameBorder="0"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowFullScreen
+      ></iframe>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };

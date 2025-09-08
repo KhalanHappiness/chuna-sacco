@@ -29,7 +29,7 @@ const Footer = () => {
             
             </div>
             <p className="text-gray-400 mb-4">
-              Empowering the University of Nairobi community with tailored financial solutions. We've been serving members since 1976.
+             
             </p>
           </div>
           
