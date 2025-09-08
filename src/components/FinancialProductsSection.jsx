@@ -167,6 +167,43 @@ const ImageProductCard = ({ icon: Icon, title, description, imageType, buttonTex
   );
 };
 
+const FlipProductCard = ({ icon: Icon, title, description, features, buttonText = "Learn More →" }) => {
+  return (
+    <div className="group [perspective:1000px] cursor-pointer">
+      <div className="relative h-80 w-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+        
+        {/* Front Side */}
+        <div className="absolute inset-0 bg-white p-6 rounded-xl shadow-md flex flex-col items-center justify-center [backface-visibility:hidden]">
+          <div className="bg-green-100 p-4 rounded-full mb-4">
+            <Icon className="h-8 w-8 text-green-600" />
+          </div>
+          <h3 className="text-lg font-bold text-gray-900 text-center">{title}</h3>
+        </div>
+        
+        {/* Back Side */}
+        <div className="absolute inset-0 bg-green-600 text-white p-6 rounded-xl shadow-md flex flex-col justify-between [transform:rotateY(180deg)] [backface-visibility:hidden]">
+          <div>
+            <p className="text-sm mb-4">{description}</p>
+            <ul className="space-y-1 text-sm">
+              {features?.map((feature, index) => (
+                <li key={index} className="flex items-center">
+                  <CheckCircle className="h-4 w-4 text-white mr-2" />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <button className="mt-4 bg-white text-green-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">
+            {buttonText}
+          </button>
+        </div>
+
+      </div>
+    </div>
+  );
+};
+
+
 const FinancialProductsSection = () => {
   const products = [
     {
@@ -255,7 +292,7 @@ const FinancialProductsSection = () => {
         <div className="mb-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {imageProducts.map((product, index) => (
-              <ImageProductCard key={index} {...product} />
+              <FlipProductCard key={index} {...product} />
             ))}
           </div>
         </div>
