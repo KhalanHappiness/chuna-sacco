@@ -20,11 +20,9 @@ const partners = [
 
 const OurPartners = () => {
   return (
-    <section className="bg-gray-50 py-12 overflow-hidden">
+    <section className="bg-gradient-to-br from-blue-50 to-emerald-50 py-12 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-        <h2 className="text-lg font-semibold text-gray-600 mb-8">
-          Trusted by our partners
-        </h2>
+      
 
         {/* Scrolling wrapper */}
         <div className="relative w-full overflow-hidden">
