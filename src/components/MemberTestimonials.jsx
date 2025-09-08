@@ -1,5 +1,8 @@
 import { Star, ChevronLeft, ChevronRight, Quote, Calculator, Play, Users, TrendingUp, DollarSign, Calendar, Percent, ExternalLink, Youtube, ArrowRight, Verified } from "lucide-react";
 import { useState, useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 
 const testimonials = [
   {
@@ -171,27 +174,6 @@ const LoanCalculator = () => {
         </div>
       </div>
 
-      <style jsx>{`
-        .slider::-webkit-slider-thumb {
-          appearance: none;
-          height: 20px;
-          width: 20px;
-          border-radius: 50%;
-          background: linear-gradient(45deg, #10b981, #059669);
-          cursor: pointer;
-          box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
-        }
-        
-        .slider::-moz-range-thumb {
-          height: 20px;
-          width: 20px;
-          border-radius: 50%;
-          background: linear-gradient(45deg, #10b981, #059669);
-          cursor: pointer;
-          border: none;
-          box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
-        }
-      `}</style>
     </div>
   );
 };
@@ -424,14 +406,14 @@ const MemberTestimonials = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // In a real app, you would initialize AOS here:
-    // AOS.init({
-    //   duration: 800,
-    //   once: true,
-    //   offset: 100,
-    //   easing: 'ease-out-cubic',
-    //   delay: 100,
-    // });
+    //In a real app, you would initialize AOS here:
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 100,
+      easing: 'ease-out-cubic',
+      delay: 100,
+    });
     
     setIsVisible(true);
   }, []);
