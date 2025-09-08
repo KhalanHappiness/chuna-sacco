@@ -197,12 +197,15 @@ const LoanCalculator = () => {
 };
 
 const YouTubeVideoCard = () => {
+
+    const [videoOpen, setVideoOpen] = useState(false);
+
   return (
     <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-500 h-full group flex flex-col">
       {/* Video Thumbnail */}
-      <div className="relative h-48 overflow-hidden">
+      <div className="relative h-50 overflow-hidden">
         <img 
-          src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&w=1000&h=600&fit=crop"
+          src="https://www.chunasacco.co.ke/sites/default/files/2024-02/670png.png"
           alt="Chuna Sacco Success Stories"
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
         />
@@ -210,7 +213,10 @@ const YouTubeVideoCard = () => {
         
         {/* Play Button */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-2xl hover:bg-red-700 transition-colors duration-300 hover:scale-110 transform cursor-pointer">
+          <div
+            onClick={() => setVideoOpen(true)} 
+            className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-2xl hover:bg-red-700 transition-colors duration-300 hover:scale-110 transform cursor-pointer"
+          >
             <Play className="w-6 h-6 text-white ml-0.5" />
           </div>
         </div>
@@ -223,7 +229,7 @@ const YouTubeVideoCard = () => {
 
         {/* Duration */}
         <div className="absolute bottom-3 right-3 bg-black/70 text-white px-2 py-1 rounded text-xs">
-          5:42
+          0:52
         </div>
       </div>
 
@@ -243,25 +249,11 @@ const YouTubeVideoCard = () => {
           Discover how Chuna Sacco has transformed lives through our member success stories. From small business loans to homeownership dreams - watch real testimonials from our community.
         </p>
 
-        {/* Stats */}
-        <div className="grid grid-cols-3 gap-3 mb-5">
-          <div className="text-center">
-            <div className="text-lg font-bold text-red-600">50+</div>
-            <div className="text-xs text-gray-500">Videos</div>
-          </div>
-          <div className="text-center">
-            <div className="text-lg font-bold text-green-600">2.1K</div>
-            <div className="text-xs text-gray-500">Subscribers</div>
-          </div>
-          <div className="text-center">
-            <div className="text-lg font-bold text-blue-600">15K</div>
-            <div className="text-xs text-gray-500">Views</div>
-          </div>
-        </div>
+    
 
         {/* CTA Button */}
         <a
-          href="https://www.youtube.com/@chunasacco"
+          href="https://www.youtube.com/embed/K9jOswGlNoA?autoplay=1"
           target="_blank"
           rel="noopener noreferrer"
           className="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-2.5 px-4 rounded-xl font-semibold hover:from-red-700 hover:to-red-800 transition-all duration-300 hover:scale-105 transform shadow-lg flex items-center justify-center gap-2 group text-sm"
@@ -271,6 +263,32 @@ const YouTubeVideoCard = () => {
           <ExternalLink className="w-3 h-3 group-hover:translate-x-1 transition-transform duration-300" />
         </a>
       </div>
+
+
+      {videoOpen && (
+  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
+    <div className="bg-white rounded-2xl shadow-xl overflow-hidden w-[90%] max-w-5xl h-[70vh] relative">
+      {/* Close button */}
+      <button
+        onClick={() => setVideoOpen(false)}
+        className="absolute top-2 right-2 text-black text-2xl font-bold z-10"
+      >
+        ✕
+      </button>
+
+      {/* YouTube iframe */}
+      <iframe
+        className="w-full h-full"
+        src="https://www.youtube.com/embed/K9jOswGlNoA?autoplay=1"
+        title="YouTube video player"
+        frameBorder="0"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowFullScreen
+      ></iframe>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };
@@ -449,7 +467,7 @@ const MemberTestimonials = () => {
           <h2 
             data-aos="fade-up" 
             data-aos-delay="300"
-            className="text-3xl lg:text-5xl font-bold text-gray-900 mb-6 bg-gradient-to-r from-gray-900 via-green-800 to-emerald-800 bg-clip-text text-transparent"
+            className="text-3xl lg:text-3xl font-bold text-gray-900 mb-6 bg-gradient-to-r from-gray-900 via-green-800 to-emerald-800 bg-clip-text text-transparent"
           >
             Member Success Hub
           </h2>
