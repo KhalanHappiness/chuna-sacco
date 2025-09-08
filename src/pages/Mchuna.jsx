@@ -3,6 +3,7 @@ import { Menu, X, Phone, Mail, MapPin, Clock, ChevronDown, Search } from 'lucide
 
 const Mchuna = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [videoOpen, setVideoOpen] = useState(false); // 👈 new state
 
   const navItems = [
     { name: 'HOME', href: '#' },
@@ -23,24 +24,6 @@ const Mchuna = () => {
     'Funds transfer'
   ];
 
-  const relatedLinks = [
-    'Sacco Societies Regulatory Authority',
-    'Kenya Union of Savings and Credit Co-operatives',
-    'Cooperative Bank',
-    'University of Nairobi',
-    'CIC Insurance Group Insurance company',
-    'ICEA LION Group'
-  ];
-
-  const quickLinks = [
-    'MCHUNA APPLICATION',
-    'Help Desk',
-    'Online Loan Application',
-    'Asset Financing',
-    'Group Loan',
-    'New Member Registration'
-  ];
-
   return (
     <div className="min-h-screen bg-gray-50 mt-24">
     
@@ -59,22 +42,18 @@ const Mchuna = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
             {/* Left Column - Image */}
             <div className="relative">
-              <div className="bg-gradient-to-br from-blue-100 to-gray-200 rounded-2xl overflow-hidden shadow-2xl">
-                <div className="relative h-96 flex items-center justify-center">
-                  {/* Placeholder for woman with phone */}
-                  <div className="w-64 h-80 bg-gradient-to-br from-gray-300 to-gray-400 rounded-lg flex items-center justify-center relative">
-                    <div className="text-center text-gray-600">
-                      <div className="w-16 h-16 bg-white rounded-xl mx-auto mb-4 flex items-center justify-center shadow-lg">
-                        <Phone className="w-8 h-8 text-green-600" />
-                      </div>
-                      <p className="font-semibold">Mobile Banking</p>
-                    </div>
-                    {/* Play button overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-red-700 transition-colors">
-                        <div className="w-0 h-0 border-l-8 border-l-white border-t-4 border-t-transparent border-b-4 border-b-transparent ml-1"></div>
-                      </div>
-                    </div>
+              <div className="bg-gradient-to-br from-blue-100 to-gray-200 overflow-hidden shadow-2xl relative">
+                <img 
+                  src="https://www.chunasacco.co.ke/sites/default/files/2024-02/670png.png" 
+                  alt="chuna sacco" 
+                />
+                {/* Play button overlay */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div 
+                    className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-red-700 transition-colors"
+                    onClick={() => setVideoOpen(true)} // 👈 open modal
+                  >
+                    <div className="w-0 h-0 border-l-8 border-l-white border-t-4 border-t-transparent border-b-4 border-b-transparent ml-1"></div>
                   </div>
                 </div>
               </div>
@@ -123,7 +102,31 @@ const Mchuna = () => {
         </div>
       </main>
 
-     
+      {/* 🎬 Video Modal */}
+      {videoOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
+          <div className="bg-white rounded-2xl shadow-xl overflow-hidden w-[90%] max-w-lg relative">
+            {/* Close button */}
+            <button 
+              onClick={() => setVideoOpen(false)} 
+              className="absolute top-2 right-2 text-black text-2xl font-bold"
+            >
+              ✕
+            </button>
+            {/* YouTube iframe */}
+            <div className="aspect-w-16 aspect-h-9">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/YOUR_VIDEO_ID?autoplay=1"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="autoplay; encrypted-media; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

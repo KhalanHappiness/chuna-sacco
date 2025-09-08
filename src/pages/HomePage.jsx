@@ -9,8 +9,8 @@ const HomePage = () => {
     <div>
       <HeroSection />
       <FinancialProductsSection />
-      <MemberTestimonials />
       <LatestUpdates />
+      <MemberTestimonials />
     </div>
   )
 }
