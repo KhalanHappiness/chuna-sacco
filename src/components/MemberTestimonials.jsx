@@ -456,7 +456,7 @@ const MemberTestimonials = () => {
           <p 
             data-aos="fade-up" 
             data-aos-delay="400"
-            className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed"
+            className="text-base text-gray-600 max-w-4xl mx-auto leading-relaxed"
           >
             Calculate your loan, watch inspiring stories, and read testimonials from our thriving community
           </p>
