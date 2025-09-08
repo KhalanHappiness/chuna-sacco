@@ -1,6 +1,9 @@
-import { Calendar, Clock, User, ArrowRight, TrendingUp, Users, Heart, Building2 } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { Calendar, Clock, ArrowRight, TrendingUp, Users, Heart, Building2, ChevronLeft, ChevronRight } from "lucide-react";
 
 const LatestUpdates = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   const latestNews = [
     {
       id: 1,
@@ -10,7 +13,8 @@ const LatestUpdates = () => {
       category: "Technology",
       date: "Aug 5, 2025",
       readTime: "3 min read",
-      featured: true
+      featured: true,
+      link: "https://www.chunasacco.co.ke/atm-decline-error-codes-and-reasons"
     },
     {
       id: 2,
@@ -41,6 +45,24 @@ const LatestUpdates = () => {
     { icon: Heart, label: "Success Stories", value: "500+" }
   ];
 
+  // Auto-slide every 6s
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % latestNews.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [latestNews.length]);
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + latestNews.length) % latestNews.length);
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % latestNews.length);
+  };
+
+  const featured = latestNews[currentSlide];
+
   return (
     <section className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,13 +77,13 @@ const LatestUpdates = () => {
         {/* Main Content Grid */}
         <div className="grid lg:grid-cols-3 gap-8 mb-12">
           
-          {/* Featured Story */}
-          <div className="lg:col-span-2">
+          {/* Featured Story - now a slider */}
+          <div className="lg:col-span-2 relative">
             <article className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden h-full">
               <div className="relative h-64 lg:h-80 overflow-hidden">
                 <img 
-                  src={latestNews[0].image}
-                  alt={latestNews[0].title}
+                  src={featured.image}
+                  alt={featured.title}
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute top-4 left-4">
@@ -71,32 +93,46 @@ const LatestUpdates = () => {
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6">
                   <span className="bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium mb-3 inline-block">
-                    {latestNews[0].category}
+                    {featured.category}
                   </span>
                 </div>
+
+                {/* Arrows */}
+                <button 
+                  onClick={prevSlide} 
+                  className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2 rounded-full"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <button 
+                  onClick={nextSlide} 
+                  className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2 rounded-full"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
               </div>
               <div className="p-6">
                 <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-3 hover:text-emerald-600 transition-colors duration-300">
-                  {latestNews[0].title}
+                  {featured.title}
                 </h3>
                 <p className="text-gray-600 mb-4 leading-relaxed">
-                  {latestNews[0].summary}
+                  {featured.summary}
                 </p>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4 text-sm text-gray-500">
                     <div className="flex items-center gap-1">
                       <Calendar className="w-4 h-4" />
-                      <span>{latestNews[0].date}</span>
+                      <span>{featured.date}</span>
                     </div>
                     <div className="flex items-center gap-1">
                       <Clock className="w-4 h-4" />
-                      <span>{latestNews[0].readTime}</span>
+                      <span>{featured.readTime}</span>
                     </div>
                   </div>
                   <a 
-                    href="https://www.chunasacco.co.ke/atm-decline-error-codes-and-reasons" 
+                    href={featured.link} 
                     className="text-emerald-600 hover:text-emerald-700 font-semibold text-sm flex items-center gap-1 group"
-                    >
+                  >
                     Read More
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                   </a>
@@ -107,7 +143,7 @@ const LatestUpdates = () => {
 
           {/* Side Stories */}
           <div className="space-y-6">
-            {latestNews.slice(1).map((article) => (
+            {latestNews.filter((_, idx) => idx !== currentSlide).map((article) => (
               <article key={article.id} className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group">
                 <div className="flex gap-4 p-4">
                   <div className="relative w-20 h-20 flex-shrink-0 overflow-hidden rounded-lg">
@@ -127,15 +163,14 @@ const LatestUpdates = () => {
                     <h4 className="font-bold text-gray-900 text-sm mb-2 group-hover:text-emerald-600 transition-colors duration-300 line-clamp-2">
                       {article.title}
                     </h4>
-                    
                     <div className="flex items-center justify-between">
                       <span className="text-xs text-gray-500">{article.readTime}</span>
                       <a 
                         href={article.link}
                         className="text-emerald-600 hover:text-emerald-700 text-xs font-medium"
-                        >
+                      >
                         Read →
-                    </a>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -162,11 +197,10 @@ const LatestUpdates = () => {
 
         {/* Bottom CTA */}
         <div className="text-center">
-         
           <a 
             href="https://www.chunasacco.co.ke/latest-news"   
             className="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-500 font-semibold transition-all duration-300 hover:shadow-lg hover:-translate-y-1 inline-flex items-center gap-2 mx-auto"
-            >
+          >
             View All News & Updates
             <ArrowRight className="w-4 h-4" />
           </a>
