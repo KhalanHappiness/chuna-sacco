@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import member from '../assets/be a member.jpg'
+import chunamarketing from '../assets/chuna mkting post copy.jpg'
+import karibuloan from '../assets/KARIBU LOAN DONE copy.jpg'
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -7,28 +10,28 @@ const HeroSection = () => {
 
   const slides = [
     {
-      image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      title: "Your financial journey starts here",
-      subtitle: "Empowering UoN community with tailored financial solutions",
-      shortSubtitle: "Tailored financial solutions for UoN"
+      image: karibuloan,
+      title: "",
+      subtitle: "",
+      shortSubtitle: ""
     },
     {
-      image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      title: "Financial Growth",
-      subtitle: "Building wealth together",
-      shortSubtitle: "Building wealth together"
+      image: chunamarketing,
+      title: "",
+      subtitle: "",
+      shortSubtitle: ""
     },
     {
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      title: "Modern Banking",
-      subtitle: "Technology meets tradition",
-      shortSubtitle: "Technology meets tradition"
+      image: "https://chunasacco.co.ke/sites/default/files/gallery/IMG_5864.jpg",
+      title: "",
+      subtitle: "",
+      shortSubtitle: ""
     },
     {
-      image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      title: "University Community",
-      subtitle: "Serving UoN since 1976",
-      shortSubtitle: "Serving UoN since 1976"
+      image: member,
+      title: "",
+      subtitle: "",
+      shortSubtitle: ""
     }
   ];
 
@@ -94,7 +97,7 @@ const HeroSection = () => {
           {/* Image Slider */}
           <div className="relative lg:col-span-3">
             <div className="relative bg-gradient-to-br from-emerald-50 to-blue-50 overflow-hidden shadow-2xl">
-              <div className="relative h-[400px] sm:h-[500px] md:h-[550px] lg:h-[600px] overflow-hidden">
+              <div className="relative h-[400px] sm:h-[500px] md:h-[550px] lg:h-[650px] overflow-hidden">
                 {slides.map((slide, index) => (
                   <div
                     key={index}
@@ -111,7 +114,7 @@ const HeroSection = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent md:from-black/60 md:via-black/20"></div>
                     
                     {/* Slide Content */}
-                    <div className="absolute bottom-16 sm:top-1/2 sm:-translate-y-1/2 left-4 sm:left-6 text-white max-w-xs sm:max-w-md">
+                    <div className="absolute bottom-8  left-4 sm:left-6 text-white max-w-xs sm:max-w-md">
                       <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-1 sm:mb-2 leading-tight">
                         {slide.title}
                       </h3>
@@ -122,7 +125,7 @@ const HeroSection = () => {
                         {slide.subtitle}
                       </p>
 
-                      {index === 0 && (
+                      {/* {index === 0 && (
                         <div className="flex space-x-3 sm:space-x-4 mt-3 sm:mt-4">
                           <a
                             href="https://applications.chunasacco.co.ke/index.php?r=new-membership"
@@ -131,7 +134,7 @@ const HeroSection = () => {
                             Become a Member
                           </a>
                         </div>
-                      )}
+                      )} */}
                     </div>
                   </div>
                 ))}

@@ -6,77 +6,98 @@ const DownloadsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [downloadingId, setDownloadingId] = useState(null);
 
   const downloads = [
     {
       id: 1,
-      title: "Vehicle KRA Transfer form",
+      title: "Delegates Vetting Form",
       downloads: 282,
       category: "General Downloads",
-      updateDate: "November 30, 2020"
+      updateDate: "March 04, 2025",
+      fileUrl: "https://www.chunasacco.co.ke/sites/default/files/2025-02/Delegates%20Vetting%20Form%202025%2004.03.2025.pdf", 
+      filename: "delegates-vetting-form.pdf"
     },
     {
       id: 2,
-      title: "Vehicle Insurance Form to Insurance Company",
+      title: "2024 revision-chuna sacco bylaws",
       downloads: 161,
       category: "General Downloads",
-      updateDate: "November 30, 2020"
+      updateDate: "November 30, 2024",
+      fileUrl: "https://www.chunasacco.co.ke/sites/default/files/2025-01/Bylaws%20-%204th%20Revision%202024_compressed_0.pdf",
+      filename: "chuna-sacco-bylaws-2024.pdf"
     },
     {
       id: 3,
-      title: "Vehicle As Security Requirements",
+      title: "Sacco by laws 2023 revised",
       downloads: 242,
       category: "General Downloads",
-      updateDate: "November 30, 2020"
+      updateDate: "November 30, 2023",
+      fileUrl: "https://www.chunasacco.co.ke/sites/default/files/2025-01/CHUNA%20SACCO%20UPDATED%20By-laws%202023%20-%20current.pdf",
+      filename: "sacco-bylaws-2023.pdf"
     },
     {
       id: 4,
-      title: "UWS_Childrens_Account_Opening_Form Fillable",
+      title: "ATM Application Form",
       downloads: 41,
       category: "General Downloads, Loan Products Downloads, Savings Downloads",
-      updateDate: "October 4, 2023"
+      updateDate: "October 4, 2023",
+      fileUrl: "https://www.chunasacco.co.ke/sites/default/files/downloads/forms/ATM%20Application.pdf",
+      filename: "atm-application-form.pdf"
     },
     {
       id: 5,
-      title: "UWS-loan-form-Fillable",
+      title: "Chuna form",
       downloads: 696,
       category: "General Downloads, Loan Products Downloads, Savings Downloads",
-      updateDate: "April 25, 2025"
+      updateDate: "April 25, 2025",
+      fileUrl: "/downloads/chuna-form.pdf",
+      filename: "chuna-form.pdf"
     },
     {
       id: 6,
-      title: "UWS-Application-for-Membership-fillable",
+      title: "Student Application Form",
       downloads: 239,
       category: "General Downloads, Loan Products Downloads, Savings Downloads",
-      updateDate: "April 15, 2025"
+      updateDate: "April 15, 2025",
+      fileUrl: "https://www.chunasacco.co.ke/sites/default/files/2024-02/forms%20new%202023/Student%20Member%20application%20form_11zon.pdf",
+      filename: "student-application-form.pdf"
     },
     {
       id: 7,
-      title: "Send Wave Procedure",
+      title: "Change Salary Paypoint",
       downloads: 251,
       category: "General Downloads",
-      updateDate: "November 30, 2020"
+      updateDate: "November 30, 2020",
+      fileUrl: "/downloads/change-salary-paypoint.pdf",
+      filename: "change-salary-paypoint.pdf"
     },
     {
       id: 8,
-      title: "Property As Security Requirements",
+      title: "Refund Form",
       downloads: 339,
       category: "General Downloads",
-      updateDate: "November 30, 2020"
+      updateDate: "November 30, 2020",
+      fileUrl: "/downloads/refund-form.pdf",
+      filename: "refund-form.pdf"
     },
     {
       id: 9,
-      title: "NSE Shares As Security Requirements",
+      title: "Normal Premium Loan Form",
       downloads: 187,
       category: "General Downloads",
-      updateDate: "November 30, 2020"
+      updateDate: "November 30, 2020",
+      fileUrl: "/downloads/normal-premium-loan-form.pdf",
+      filename: "normal-premium-loan-form.pdf"
     },
     {
       id: 10,
-      title: "MPESA Procedure",
+      title: "Normal Jijenge Form",
       downloads: 410,
       category: "General Downloads",
-      updateDate: "November 30, 2020"
+      updateDate: "November 30, 2020",
+      fileUrl: "/downloads/normal-jijenge-form.pdf",
+      filename: "normal-jijenge-form.pdf"
     }
   ];
 
@@ -90,73 +111,88 @@ const DownloadsPage = () => {
   const endIndex = startIndex + itemsPerPage;
   const currentItems = filteredDownloads.slice(startIndex, endIndex);
 
-  const handleDownload = (item) => {
-    console.log(`Downloading ${item.title}`);
+  // Enhanced download function with error handling and loading states
+  const handleDownload = async (item) => {
+    setDownloadingId(item.id);
+    
+    try {
+      console.log(`Downloading ${item.title}`);
+      
+      // Method 1: Direct download (if files are publicly accessible)
+      const link = document.createElement('a');
+      link.href = item.fileUrl;
+      link.download = item.filename;
+      link.target = '_blank';
+      
+      // Append to body, click, and remove
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Optional: Track download count (you can make an API call here)
+      // await fetch(`/api/downloads/${item.id}/increment`, { method: 'POST' });
+      
+    } catch (error) {
+      console.error('Download failed:', error);
+      alert(`Failed to download ${item.title}. Please try again.`);
+    } finally {
+      setDownloadingId(null);
+    }
+  };
+
+  // Alternative method for protected files or API-based downloads
+  const handleDownloadWithFetch = async (item) => {
+    setDownloadingId(item.id);
+    
+    try {
+      console.log(`Downloading ${item.title}`);
+      
+      // Fetch the file from your API
+      const response = await fetch(`/api/downloads/${item.id}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}`, // If auth required
+        },
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      // Get the blob
+      const blob = await response.blob();
+      
+      // Create download URL
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = item.filename;
+      
+      // Trigger download
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Clean up
+      window.URL.revokeObjectURL(url);
+      
+    } catch (error) {
+      console.error('Download failed:', error);
+      alert(`Failed to download ${item.title}. Please try again.`);
+    } finally {
+      setDownloadingId(null);
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo */}
-            <div className="flex items-center">
-              <div className="bg-green-600 text-white px-3 py-1 rounded text-xl font-bold">
-                UWS
-              </div>
-              <span className="ml-2 text-sm text-gray-600">UNITED WOMEN SACCO</span>
-            </div>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex space-x-8">
-              <a href="#" className="text-gray-700 hover:text-green-600 font-medium">HOME</a>
-              <a href="#" className="text-gray-700 hover:text-green-600 font-medium">ABOUT US</a>
-              <a href="#" className="text-gray-700 hover:text-green-600 font-medium">MEMBERSHIP</a>
-              <a href="#" className="text-gray-700 hover:text-green-600 font-medium">SAVINGS PRODUCTS</a>
-              <a href="#" className="text-gray-700 hover:text-green-600 font-medium">LOAN PRODUCTS</a>
-              <a href="#" className="text-gray-700 hover:text-green-600 font-medium">PAYMENT DETAILS</a>
-              <a href="#" className="text-green-600 font-medium">RESOURCES</a>
-              <a href="#" className="text-gray-700 hover:text-green-600 font-medium">PORTAL</a>
-            </nav>
-
-            {/* Mobile menu button */}
-            <div className="md:hidden">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-gray-700 hover:text-green-600"
-              >
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-white border-t">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              <a href="#" className="block px-3 py-2 text-gray-700 hover:text-green-600">HOME</a>
-              <a href="#" className="block px-3 py-2 text-gray-700 hover:text-green-600">ABOUT US</a>
-              <a href="#" className="block px-3 py-2 text-gray-700 hover:text-green-600">MEMBERSHIP</a>
-              <a href="#" className="block px-3 py-2 text-gray-700 hover:text-green-600">SAVINGS PRODUCTS</a>
-              <a href="#" className="block px-3 py-2 text-gray-700 hover:text-green-600">LOAN PRODUCTS</a>
-              <a href="#" className="block px-3 py-2 text-gray-700 hover:text-green-600">PAYMENT DETAILS</a>
-              <a href="#" className="block px-3 py-2 text-green-600">RESOURCES</a>
-              <a href="#" className="block px-3 py-2 text-gray-700 hover:text-green-600">PORTAL</a>
-            </div>
-          </div>
-        )}
-      </header>
-
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-green-600 to-green-700 py-16">
+      <div className="relative py-16 mt-28">
         <div className="absolute inset-0">
-          <div className="bg-black bg-opacity-40 w-full h-full"></div>
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Downloads</h1>
-          <p className="text-xl text-green-100">Access all your important documents and forms</p>
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Downloads</h1>
+          <p className="text-xl text-gray-500">Access all your important documents and forms</p>
         </div>
       </div>
 
@@ -233,10 +269,15 @@ const DownloadsPage = () => {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <button
                         onClick={() => handleDownload(item)}
-                        className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center space-x-2 transition-colors"
+                        disabled={downloadingId === item.id}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium flex items-center space-x-2 transition-all ${
+                          downloadingId === item.id
+                            ? 'bg-gray-400 cursor-not-allowed text-white'
+                            : 'bg-blue-500 hover:bg-blue-600 text-white hover:shadow-lg transform hover:scale-105'
+                        }`}
                       >
-                        <Download className="h-4 w-4" />
-                        <span>Download</span>
+                        <Download className={`h-4 w-4 ${downloadingId === item.id ? 'animate-bounce' : ''}`} />
+                        <span>{downloadingId === item.id ? 'Downloading...' : 'Download'}</span>
                       </button>
                     </td>
                   </tr>
@@ -287,63 +328,6 @@ const DownloadsPage = () => {
             >
               Next
             </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Footer */}
-      <footer className="bg-gray-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Product Links */}
-            <div>
-              <h3 className="text-lg font-semibold mb-4">PRODUCT LINKS</h3>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-gray-300 hover:text-green-400">Membership</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-green-400">Savings Products</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-green-400">Loan Products</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-green-400">Payment Details</a></li>
-              </ul>
-            </div>
-
-            {/* Resource Links */}
-            <div>
-              <h3 className="text-lg font-semibold mb-4">RESOURCE LINKS</h3>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-gray-300 hover:text-green-400">Downloads</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-green-400">Jobs</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-green-400">Media</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-green-400">Latest News</a></li>
-              </ul>
-            </div>
-
-            {/* Company Links */}
-            <div>
-              <h3 className="text-lg font-semibold mb-4">COMPANY LINKS</h3>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-gray-300 hover:text-green-400">About Us</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-green-400">Meetings</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-green-400">Governance</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-green-400">Contacts</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 United Women Sacco. Website Design by Peak & Dale.</p>
-          </div>
-        </div>
-      </footer>
-
-      {/* Chat Widget */}
-      <div className="fixed bottom-4 right-4">
-        <div className="bg-white rounded-lg shadow-lg p-4 max-w-xs">
-          <p className="text-sm text-gray-600 mb-2">
-            Welcome to our site, if you need help simply reply to this message, we are online and ready to help.
-          </p>
-          <div className="flex items-center justify-between">
-            <span className="bg-green-500 text-white px-2 py-1 rounded text-xs">Online</span>
-            <span className="bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">1</span>
           </div>
         </div>
       </div>

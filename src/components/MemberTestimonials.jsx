@@ -432,7 +432,7 @@ const MemberTestimonials = () => {
   useEffect(() => {
     //In a real app, you would initialize AOS here:
     AOS.init({
-      duration: 800,
+      duration: 500,
       once: true,
       offset: 100,
       easing: 'ease-out-cubic',
@@ -443,7 +443,7 @@ const MemberTestimonials = () => {
   }, []);
 
   return (
-    <section className="bg-gradient-to-br from-gray-50 via-blue-50 to-emerald-50 py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section className="bg-gradient-to-br from-gray-50 via-blue-50 to-emerald-50 py-20 px-5 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-emerald-200/20 to-blue-200/20 rounded-full blur-3xl"></div>
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-green-200/15 to-emerald-200/15 rounded-full blur-3xl"></div>

@@ -7,6 +7,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
   const [isProductsDropdownOpen, setIsProductsDropdownOpen] = React.useState(false)
   const [isMobileProductsOpen, setIsMobileProductsOpen] = React.useState(false)
+  const [isAboutUsDropdownOpen, setIsAboutUsDropdownOpen] = React.useState(false)
   const location = useLocation()
 
   // Close menu when a link is clicked
@@ -36,13 +37,20 @@ const Header = () => {
     { name: 'Mchuna', path: '/mchuna' }
   ]
 
+  const aboutUsItems = [
+
+    {name: 'Who We Are', path: '/WhoWeAre'}
+  ]
+
   // Navigation links configuration
   const navigationLinks = [
     { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
+    { name: 'About', path: '/WhoWeAre', hasDropdown: true },
     { name: 'Products', path: '/fosaProducts', hasDropdown: true },
     { name: 'Membership', path: '/membership' },
+    {name: 'Downloads', path: '/downloads'},
     { name: 'Contact', path: '/contact' }
+    
   ]
 
   return (
@@ -66,15 +74,29 @@ const Header = () => {
               <div 
                 key={link.path} 
                 className="relative"
-                onMouseEnter={() => link.hasDropdown && setIsProductsDropdownOpen(true)}
-                onMouseLeave={() => link.hasDropdown && setIsProductsDropdownOpen(false)}
+                onMouseEnter={() => {
+                  if (link.hasDropdown && link.name === 'Products') {
+                    setIsProductsDropdownOpen(true);
+                  } else if (link.hasDropdown && link.name === 'About') {
+                    setIsAboutUsDropdownOpen(true);
+                  }
+                }}
+                onMouseLeave={() => {
+                  if (link.hasDropdown && link.name === 'Products') {
+                    setIsProductsDropdownOpen(false);
+                  } else if (link.hasDropdown && link.name === 'About') {
+                    setIsAboutUsDropdownOpen(false);
+                  }
+                }}
               >
                 {link.hasDropdown ? (
                   <div className="flex items-center">
                     <Link
                       to={link.path}
                       className={`flex items-center space-x-1 transition-colors text-sm xl:text-base ${
-                        isActiveLink(link.path) || location.pathname.startsWith('/products/')
+                        isActiveLink(link.path) || 
+                        (link.name === 'Products' && location.pathname.startsWith('/products/')) ||
+                        (link.name === 'About' && location.pathname.startsWith('/WhoWeAre/'))
                           ? 'text-green-600 font-semibold border-b-2 border-green-600'
                           : 'text-gray-700 hover:text-green-600'
                       }`}
@@ -82,34 +104,65 @@ const Header = () => {
                       <span>{link.name}</span>
                       <ChevronDown 
                         className={`w-4 h-4 transition-transform duration-200 ${
-                          isProductsDropdownOpen ? 'rotate-180' : ''
+                          (link.name === 'Products' && isProductsDropdownOpen) ||
+                          (link.name === 'About' && isAboutUsDropdownOpen)
+                            ? 'rotate-180' 
+                            : ''
                         }`} 
                       />
                     </Link>
                     
-                    {/* Dropdown Menu */}
-                    <div className={`absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-100 z-50 transition-all duration-200 ${
-                      isProductsDropdownOpen 
-                        ? 'opacity-100 translate-y-0 visible' 
-                        : 'opacity-0 translate-y-2 invisible'
-                    }`}>
-                      <div className="py-2">
-                        {productItems.map((item) => (
-                          <Link
-                            key={item.path}
-                            to={item.path}
-                            onClick={handleLinkClick}
-                            className={`block px-4 py-3 text-sm transition-colors hover:bg-green-50 hover:text-green-600 ${
-                              isActiveLink(item.path)
-                                ? 'text-green-600 bg-green-50 font-medium'
-                                : 'text-gray-700'
-                            }`}
-                          >
-                            {item.name}
-                          </Link>
-                        ))}
+                    {/* Products Dropdown Menu */}
+                    {link.name === 'Products' && (
+                      <div className={`absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-100 z-50 transition-all duration-200 ${
+                        isProductsDropdownOpen 
+                          ? 'opacity-100 translate-y-0 visible' 
+                          : 'opacity-0 translate-y-2 invisible'
+                      }`}>
+                        <div className="py-2">
+                          {productItems.map((item) => (
+                            <Link
+                              key={item.path}
+                              to={item.path}
+                              onClick={handleLinkClick}
+                              className={`block px-4 py-3 text-sm transition-colors hover:bg-green-50 hover:text-green-600 ${
+                                isActiveLink(item.path)
+                                  ? 'text-green-600 bg-green-50 font-medium'
+                                  : 'text-gray-700'
+                              }`}
+                            >
+                              {item.name}
+                            </Link>
+                          ))}
+                        </div>
                       </div>
-                    </div>
+                    )}
+
+                    {/* About Us Dropdown Menu */}
+                    {link.name === 'About' && (
+                      <div className={`absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-100 z-50 transition-all duration-200 ${
+                        isAboutUsDropdownOpen 
+                          ? 'opacity-100 translate-y-0 visible' 
+                          : 'opacity-0 translate-y-2 invisible'
+                      }`}>
+                        <div className="py-2">
+                          {aboutUsItems.map((item) => (
+                            <Link
+                              key={item.path}
+                              to={item.path}
+                              onClick={handleLinkClick}
+                              className={`block px-4 py-3 text-sm transition-colors hover:bg-green-50 hover:text-green-600 ${
+                                isActiveLink(item.path)
+                                  ? 'text-green-600 bg-green-50 font-medium'
+                                  : 'text-gray-700'
+                              }`}
+                            >
+                              {item.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 ) : (
                   <Link

@@ -19,7 +19,7 @@ const LatestUpdates = () => {
     {
       id: 2,
       title: "Request for Quotation (RFQ): Monitoring System for Infrastructure Operations",
-      summary: "Enhanced security, instant transfers, and AI-powered financial insights now available to all members.",
+      summary: "",
       image: "https://www.chunasacco.co.ke/sites/default/files/2025-08/monit.png",
       category: "Business",
       date: "Aug 4, 2025",
@@ -29,7 +29,7 @@ const LatestUpdates = () => {
     {
       id: 3,
       title: "Sacco update Dec 2024",
-      summary: "From a KSh 50,000 loan to employing 12 people - discover how our SACCO empowered Grace's tailoring business.",
+      summary: "",
       image: "https://www.chunasacco.co.ke/sites/default/files/2024-12/r2.png",
       category: "News",
       date: "Dec 18, 2024",
@@ -39,13 +39,13 @@ const LatestUpdates = () => {
   ];
 
   const quickStats = [
-    { icon: Users, label: "Active Members", value: "15,000+" },
+    { icon: Users, label: "Active Members", value: "4,000+" },
     { icon: TrendingUp, label: "Total Savings", value: "KSh 2.5B" },
     { icon: Building2, label: "Loans Disbursed", value: "KSh 1.8B" },
     { icon: Heart, label: "Success Stories", value: "500+" }
   ];
 
-  // Auto-slide every 6s
+  // Auto-slide every 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % latestNews.length);

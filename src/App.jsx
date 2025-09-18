@@ -13,7 +13,8 @@ import FosaProducts from './pages/FosaProducts'
 import BosaProducts from './pages/BosaProducts'
 import InsurancePage from './pages/InsurancePage'
 import Mchuna from './pages/Mchuna'
-// import AboutPage from './pages/AboutPage'
+import DownloadsPage from './pages/DownloadsPage'
+import WhoWeAre from './pages/WhoWeAre'
 // import ProductsPage from './pages/ProductsPage'
 // import FOSAServicesPage from './pages/FOSAServicesPage'
 // import MembershipPage from './pages/MembershipPage'
@@ -38,6 +39,8 @@ function App() {
             <Route path="/bosaProducts" element={<BosaProducts />} />
             <Route path="/insurance" element={<InsurancePage />} />
             <Route path="/mchuna" element={<Mchuna />} />
+            <Route path="/downloads" element={<DownloadsPage/>}/>
+            <Route path="/WhoWeAre" element={<WhoWeAre/>}/>
 
 
 

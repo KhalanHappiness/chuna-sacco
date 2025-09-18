@@ -51,7 +51,7 @@ const Mchuna = () => {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div 
                     className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-red-700 transition-colors"
-                    onClick={() => setVideoOpen(true)} // 👈 open modal
+                    onClick={() => setVideoOpen(true)} 
                   >
                     <div className="w-0 h-0 border-l-8 border-l-white border-t-4 border-t-transparent border-b-4 border-b-transparent ml-1"></div>
                   </div>
