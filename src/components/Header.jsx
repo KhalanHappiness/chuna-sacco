@@ -7,6 +7,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
   const [isProductsDropdownOpen, setIsProductsDropdownOpen] = React.useState(false)
   const [isMobileProductsOpen, setIsMobileProductsOpen] = React.useState(false)
+  const [isMobileAboutOpen, setIsMobileAboutOpen] = React.useState(false) // Add separate state for About
   const [isAboutUsDropdownOpen, setIsAboutUsDropdownOpen] = React.useState(false)
   const location = useLocation()
 
@@ -15,12 +16,19 @@ const Header = () => {
     setIsMenuOpen(false)
     setIsProductsDropdownOpen(false)
     setIsMobileProductsOpen(false)
+    setIsMobileAboutOpen(false) // Reset both mobile dropdowns
   }
 
   // Toggle mobile products submenu
   const toggleMobileProducts = (e) => {
     e.preventDefault()
     setIsMobileProductsOpen(!isMobileProductsOpen)
+  }
+
+  // Toggle mobile about submenu
+  const toggleMobileAbout = (e) => {
+    e.preventDefault()
+    setIsMobileAboutOpen(!isMobileAboutOpen)
   }
 
   // Check if current path matches the link
@@ -38,7 +46,6 @@ const Header = () => {
   ]
 
   const aboutUsItems = [
-
     {name: 'Who We Are', path: '/WhoWeAre'}
   ]
 
@@ -50,7 +57,6 @@ const Header = () => {
     { name: 'Membership', path: '/membership' },
     {name: 'Downloads', path: '/downloads'},
     { name: 'Contact', path: '/contact' }
-    
   ]
 
   return (
@@ -230,27 +236,33 @@ const Header = () => {
                 {link.hasDropdown ? (
                   <>
                     <button
-                      onClick={toggleMobileProducts}
+                      onClick={link.name === 'Products' ? toggleMobileProducts : toggleMobileAbout}
                       className={`w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 text-base font-medium text-left ${
-                        isActiveLink(link.path) || location.pathname.startsWith('/products/')
+                        isActiveLink(link.path) || 
+                        (link.name === 'Products' && location.pathname.startsWith('/products/')) ||
+                        (link.name === 'About' && location.pathname.startsWith('/WhoWeAre/'))
                           ? 'text-green-600 bg-green-50 font-semibold'
                           : 'text-gray-800 hover:text-green-600 hover:bg-green-50'
                       }`}
                     >
                       <span>{link.name}</span>
                       <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${
-                        isMobileProductsOpen ? 'rotate-180' : ''
+                        (link.name === 'Products' && isMobileProductsOpen) ||
+                        (link.name === 'About' && isMobileAboutOpen)
+                          ? 'rotate-180' : ''
                       }`} />
                     </button>
                     
-                    {/* Mobile Products Submenu */}
+                    {/* Mobile Submenu */}
                     <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                      isMobileProductsOpen 
+                      (link.name === 'Products' && isMobileProductsOpen) ||
+                      (link.name === 'About' && isMobileAboutOpen)
                         ? 'max-h-96 opacity-100 mt-2' 
                         : 'max-h-0 opacity-0'
                     }`}>
                       <div className="ml-4 space-y-1 bg-gray-50 rounded-lg p-2">
-                        {productItems.map((item) => (
+                        {/* Render the correct items based on the dropdown */}
+                        {(link.name === 'Products' ? productItems : aboutUsItems).map((item) => (
                           <Link
                             key={item.path}
                             to={item.path}
