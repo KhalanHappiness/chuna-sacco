@@ -15,6 +15,7 @@ import InsurancePage from './pages/InsurancePage'
 import Mchuna from './pages/Mchuna'
 import DownloadsPage from './pages/DownloadsPage'
 import WhoWeAre from './pages/WhoWeAre'
+import BoardOfDirectors from './pages/BoardOfDirectors'
 // import ProductsPage from './pages/ProductsPage'
 // import FOSAServicesPage from './pages/FOSAServicesPage'
 // import MembershipPage from './pages/MembershipPage'
@@ -41,6 +42,8 @@ function App() {
             <Route path="/mchuna" element={<Mchuna />} />
             <Route path="/downloads" element={<DownloadsPage/>}/>
             <Route path="/WhoWeAre" element={<WhoWeAre/>}/>
+            <Route path="/boardofdirectors" element={<BoardOfDirectors/>}/>
+
 
 
 

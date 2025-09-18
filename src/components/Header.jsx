@@ -46,7 +46,8 @@ const Header = () => {
   ]
 
   const aboutUsItems = [
-    {name: 'Who We Are', path: '/WhoWeAre'}
+    {name: 'Who We Are', path: '/WhoWeAre'},
+    {name: 'Board of Directors', path: '/boardofdirectors'}
   ]
 
   // Navigation links configuration
