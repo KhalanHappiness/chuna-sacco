@@ -3,6 +3,8 @@ import { Users, Award, MapPin, Phone, Mail, Clock, ExternalLink } from 'lucide-r
 
 const BoardOfDirectors = () => {
   const [isVisible, setIsVisible] = useState(false);
+    const [imageErrors, setImageErrors] = useState({});
+
 
   useEffect(() => {
     setIsVisible(true);
@@ -13,15 +15,15 @@ const BoardOfDirectors = () => {
       id: 1,
       name: "Mr. Kelah Omwando",
       position: "Chairman",
-      image: "/api/placeholder/300/400",
+      image: "https://www.chunasacco.co.ke/sites/default/files/board/KEFAH%20JUMA%20OMWANDO.jpg",
       bio: "Experienced leader with over 15 years in cooperative management and financial services.",
       isExecutive: true
     },
     {
       id: 2,
-      name: "Mark F.S. Oludo",
+      name: "JOHN WAWERU",
       position: "Treasurer",
-      image: "/api/placeholder/300/400",
+      image: "https://www.chunasacco.co.ke/sites/default/files/board/JOHN%20WAWERU.jpg",
       bio: "Financial expert with extensive background in accounting and treasury management.",
       isExecutive: true
     },
@@ -29,15 +31,15 @@ const BoardOfDirectors = () => {
       id: 3,
       name: "Ms. Monicah Kiragu",
       position: "Hon. Secretary",
-      image: "/api/placeholder/300/400",
+      image: "https://www.chunasacco.co.ke/sites/default/files/board/MONICAH%20KIRAGU.jpg",
       bio: "Administrative professional with strong organizational and communication skills.",
       isExecutive: true
     },
     {
       id: 4,
-      name: "Robert K. Ronoh",
+      name: "George O. Ochieng",
       position: "Vice Chairman",
-      image: "/api/placeholder/300/400",
+      image: "https://www.chunasacco.co.ke/sites/default/files/board/GEORGE%20OCHIENG.png",
       bio: "Strategic leader supporting the vision and mission of the cooperative society.",
       isExecutive: true
     },
@@ -45,35 +47,22 @@ const BoardOfDirectors = () => {
       id: 5,
       name: "Julius N. Matano",
       position: "Board Member",
-      image: "/api/placeholder/300/400",
+      image: "https://www.chunasacco.co.ke/sites/default/files/board/JULIUS%20MATANO.jpg",
       bio: "Dedicated member contributing to policy development and strategic decisions."
     },
     {
       id: 6,
       name: "Marilyn K. Nabakwe",
       position: "Board Member",
-      image: "/api/placeholder/300/400",
+      image: "https://www.chunasacco.co.ke/sites/default/files/board/MARLYNN%20NABAKWE.jpg",
       bio: "Committed to ensuring member welfare and cooperative growth."
     },
-    {
-      id: 7,
-      name: "JOHN WAWERU",
-      position: "Board Member",
-      image: "/api/placeholder/300/400",
-      bio: "Experienced professional bringing valuable insights to board discussions."
-    },
-    {
-      id: 8,
-      name: "George O. Ocheng",
-      position: "Board Member",
-      image: "/api/placeholder/300/400",
-      bio: "Strategic thinker focused on member satisfaction and organizational excellence."
-    },
+   
     {
       id: 9,
       name: "PROF. RICHARD N. ONWONGA",
       position: "Board Member",
-      image: "/api/placeholder/300/400",
+      image: "https://www.chunasacco.co.ke/sites/default/files/Membership%20page/prof%20richard.png",
       bio: "Academic leader with expertise in research and institutional development."
     }
   ];
@@ -82,7 +71,7 @@ const BoardOfDirectors = () => {
   const regularMembers = boardMembers.filter(member => !member.isExecutive);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50 mt-20">
       {/* Hero Section */}
       <div className="relative bg-gradient-to-r from-emerald-600 via-green-600 to-teal-600 overflow-hidden">
         {/* Background Pattern */}
@@ -145,7 +134,7 @@ const BoardOfDirectors = () => {
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-66 object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
                   
@@ -181,110 +170,69 @@ const BoardOfDirectors = () => {
 
       {/* Regular Board Members Section */}
       <div className="bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="text-center mb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-18">
+        <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Board Members
+            Board Members
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Dedicated professionals committed to our cooperative's success and member welfare
+            Dedicated professionals committed to our cooperative's success and member welfare
             </p>
-          </div>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {regularMembers.map((member, index) => (
-              <div
-                key={member.id}
-                className={`group bg-white rounded-xl shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 overflow-hidden ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                style={{ transitionDelay: `${(index + 4) * 100}ms` }}
-              >
-                <div className="relative">
-                  <img
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {boardMembers.map((member) => (
+            <div key={member.id} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
+                {/* Fixed Image Container */}
+                <div className="relative w-full h-80 bg-gradient-to-br from-emerald-100 to-teal-100 overflow-hidden">
+                {!imageErrors[member.id] ? (
+                    <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                    className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                    onError={() => handleImageError(member.id)}
+                    style={{
+                        // Ensure the image covers the container while preserving aspect ratio
+                        objectFit: 'cover',
+                        objectPosition: 'center top' // Focus on the top part (face area)
+                    }}
+                    />
+                ) : (
+                    // Fallback when image fails to load
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-200 to-teal-200">
+                    <div className="text-center">
+                        <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <span className="text-2xl font-bold text-emerald-600">
+                            {getInitials(member.name)}
+                        </span>
+                        </div>
+                        <p className="text-emerald-700 font-medium">Photo Coming Soon</p>
+                    </div>
+                    </div>
+                )}
+                
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
                 </div>
 
+                {/* Content */}
                 <div className="p-6">
-                  <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors">
+                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors">
                     {member.name}
-                  </h3>
-                  <p className="text-emerald-600 font-medium mb-3">{member.position}</p>
-                  <p className="text-gray-600 text-sm leading-relaxed">{member.bio}</p>
+                </h3>
+                <p className="text-emerald-600 font-semibold mb-3">{member.position}</p>
+                <p className="text-gray-600 text-sm leading-relaxed">{member.bio}</p>
                 </div>
-              </div>
+
+                {/* Hover Effect */}
+                <div className="absolute inset-0 bg-gradient-to-t from-emerald-600/0 to-transparent opacity-0 group-hover:from-emerald-600/10 group-hover:opacity-100 transition-all duration-300"></div>
+            </div>
             ))}
-          </div>
         </div>
-      </div>
-
-      {/* Contact Information Footer */}
-      <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Quick Links */}
-            <div>
-              <h3 className="text-lg font-semibold text-white mb-6">Quick Links</h3>
-              <div className="space-y-3">
-                {['MCHUNA APPLICATION', 'Help Desk', 'Online Loan Application', 'Asset Financing', 'Group Loan', 'New Member Registration'].map((link) => (
-                  <a key={link} href="#" className="flex items-center text-gray-300 hover:text-emerald-400 transition-colors group">
-                    <ExternalLink className="w-4 h-4 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    {link}
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* Related Links */}
-            <div>
-              <h3 className="text-lg font-semibold text-white mb-6">Related Links</h3>
-              <div className="space-y-3">
-                {['Sacco Societies Regulatory Authority', 'Kenya Union of Savings and Credit Co-operatives', 'Cooperative Bank', 'University of Nairobi', 'CIC Insurance Group Insurance company', 'ICEA LION Group'].map((link) => (
-                  <a key={link} href="#" className="flex items-center text-gray-300 hover:text-emerald-400 transition-colors group">
-                    <ExternalLink className="w-4 h-4 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    {link}
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* Contact Info */}
-            <div>
-              <h3 className="text-lg font-semibold text-white mb-6">Contact Info</h3>
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <MapPin className="w-5 h-5 text-emerald-400 mr-3 mt-1 flex-shrink-0" />
-                  <span className="text-gray-300">University of Nairobi, Harry Thuku Rd</span>
-                </div>
-                <div className="flex items-center">
-                  <Phone className="w-5 h-5 text-emerald-400 mr-3 flex-shrink-0" />
-                  <span className="text-gray-300">+254 738 111 222</span>
-                </div>
-                <div className="flex items-center">
-                  <Mail className="w-5 h-5 text-emerald-400 mr-3 flex-shrink-0" />
-                  <span className="text-gray-300">Email Us</span>
-                </div>
-                <div className="flex items-start">
-                  <Clock className="w-5 h-5 text-emerald-400 mr-3 mt-1 flex-shrink-0" />
-                  <div className="text-gray-300">
-                    <div>Mon - Fri 8:00 am- 5:00pm</div>
-                    <div>Sat-Sun: CLOSED</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Copyright */}
-          <div className="border-t border-gray-700 mt-12 pt-8 text-center">
-            <p className="text-gray-400">
-              © Copyright Chuna Co-operative Savings & Credit Society Ltd 2024. All Rights Reserved.
-            </p>
-          </div>
         </div>
-      </div>
+        </div>
+
+      
     </div>
   );
 };
